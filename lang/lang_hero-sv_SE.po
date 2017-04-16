@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-16 09:36+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Martin Fors\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: sv_SE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: esc_html__;esc_html_e;esc_attr__;esc_attr_e;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../include/classes.php:46
+msgid "Display Hero"
+msgstr "Visa Hero"
+
+#: ../include/classes.php:51
+#: ../include/functions.php:24
+#: ../include/functions.php:52
+msgid "Hero"
+msgstr "Hero"
+
+#: ../include/classes.php:104
+#: ../include/functions.php:68
+msgid "Title"
+msgstr "Rubrik"
+
+#: ../include/classes.php:107
+#: ../include/functions.php:73
+msgid "Content"
+msgstr "Innehåll"
+
+#: ../include/classes.php:110
+#: ../include/functions.php:78
+msgid "Link"
+msgstr "Länk"
+
+#: ../include/functions.php:15
+msgid "Background Color"
+msgstr "Bakgrundsfärg"
+
+#: ../include/functions.php:40
+msgid "Choose here"
+msgstr "Välj här"
+
+#: ../include/functions.php:58
+msgid "Widget Area"
+msgstr "Widget-område"
+
+#~ msgid "Read More"
+#~ msgstr "Läs mer"
