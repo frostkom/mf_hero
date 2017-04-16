@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: MF Hero
-Plugin URI: 
+Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 1.5.0
+Version: 1.5.1
 Author: Martin Fors
 Author URI: http://frostkom.se
 Text Domain: lang_hero
 Domain Path: /lang
 
-GitHub Plugin URI: 
+GitHub Plugin URI: frostkom/mf_hero
 */
 
 include_once("include/classes.php");
