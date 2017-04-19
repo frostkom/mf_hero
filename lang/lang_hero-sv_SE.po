@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 09:36+0100\n"
+"POT-Creation-Date: 2017-04-16 09:50+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -44,13 +44,3 @@ msgstr "Länk"
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
-#: ../include/functions.php:40
-msgid "Choose here"
-msgstr "Välj här"
-
-#: ../include/functions.php:58
-msgid "Widget Area"
-msgstr "Widget-område"
-
-#~ msgid "Read More"
-#~ msgstr "Läs mer"
