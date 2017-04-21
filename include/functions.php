@@ -60,14 +60,22 @@ function meta_boxes_hero($meta_boxes)
 				'type' => 'select',
 				'options' => $arr_data_widget_area,
 				'attributes' => array(
-					'condition_type' => 'hide_if',
+					'condition_type' => 'hide_if_empty',
 					'condition_field' => '#'.$meta_prefix.'title, #'.$meta_prefix.'content, #'.$meta_prefix.'link, .rwmb-field input[name='.$meta_prefix.'image]',
 				),
 			),*/
 			array(
+				'id' => $meta_prefix.'image',
+				'type' => 'file_advanced',
+			),
+			array(
 				'name' => __("Title", 'lang_hero'),
 				'id' => $meta_prefix.'title',
 				'type' => 'text',
+				'attributes' => array(
+					'condition_type' => 'hide_if_empty',
+					'condition_field' => $meta_prefix.'content',
+				),
 			),
 			array(
 				'name' => __("Content", 'lang_hero'),
@@ -79,10 +87,6 @@ function meta_boxes_hero($meta_boxes)
 				'id' => $meta_prefix.'link',
 				'type' => 'select',
 				'options' => $arr_data_link,
-			),
-			array(
-				'id' => $meta_prefix.'image',
-				'type' => 'file_advanced',
 			),
 		)
 	);
@@ -104,8 +108,9 @@ function is_active_sidebar_hero($is_active, $widget)
 		{
 			$post_id = $post->ID;
 			$post_hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
+			$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
 
-			if($post_hero_title != '')
+			if($post_hero_title != '' || $post_hero_image != '')
 			{
 				$is_active = true;
 			}
@@ -130,29 +135,23 @@ function dynamic_sidebar_after_hero($widget)
 		if($widget == 'widget_front') //$post_hero_widget_area = get_post_meta($post_id, $meta_prefix.'widget_area', true);
 		{
 			$post_hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
+			$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
+			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
+			$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
 
-			if($post_hero_title != '')
-			{
-				$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
-				$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
-				//$post_hero_image = get_post_meta($post_id, $meta_prefix.'image', true);
-				$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
+			$data = array(
+				'before_widget' => "<div class='widget hero'>",
+				'before_title' => "<h3>",
+				'after_title' => "</h3>",
+				'after_widget' => "</div>",
+				'hero_title' => $post_hero_title,
+				'hero_content' => $post_hero_content,
+				'hero_link' => $post_hero_link,
+				'hero_image' => $post_hero_image,
+			);
 
-				$obj_hero = new mf_hero();
-
-				$data = array(
-					'before_widget' => "<div class='widget hero'>",
-					'before_title' => "<h3>",
-					'after_title' => "</h3>",
-					'after_widget' => "</div>",
-					'hero_title' => $post_hero_title,
-					'hero_content' => $post_hero_content,
-					'hero_link' => $post_hero_link,
-					'hero_image' => $post_hero_image,
-				);
-
-				echo $obj_hero->get_widget($data);
-			}
+			$obj_hero = new mf_hero();
+			echo $obj_hero->get_widget($data);
 		}
 	}
 }

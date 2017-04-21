@@ -6,32 +6,61 @@ class mf_hero
 
 	function get_widget($data)
 	{
-		$out = $data['before_widget']
-			."<div class='align_right'>";
+		$class = $a_start = $a_end = "";
 
-				if($data['hero_image'] != '')
-				{
-					$out .= "<div class='hero_image'><div><img src='".$data['hero_image']."'></div></div>";
-				}
+		if($data['hero_title'] != '' || $data['hero_image'] != '')
+		{
+			if($data['hero_link'] > 0)
+			{
+				$a_start = "<a href='".get_permalink($data['hero_link'])."'>";
+				$a_end = "</a>";
+			}
 
-				$out .= $data['before_title'].$data['hero_title'].$data['after_title']
-				."<div class='hero_content'>";
+			if($data['hero_title'] != '' && $data['hero_image'] != '')
+			{
+				$class = "align_right";
+			}
 
-					if($data['hero_link'] > 0)
+			else if($data['hero_image'] != '')
+			{
+				$class = "align_center";
+			}
+
+			$out = $data['before_widget']
+				."<div".($class != '' ? " class='".$class."'" : "").">";
+
+					if($data['hero_image'] != '')
 					{
-						$out .= "<a href='".get_permalink($data['hero_link'])."'>";
+						$out .= "<div class='image'>
+							<div>"
+								.$a_start
+									."<img src='".$data['hero_image']."'>"
+								.$a_end
+							."</div>
+						</div>";
 					}
 
-						$out .= apply_filters('the_content', $data['hero_content']);
-
-					if($data['hero_link'] > 0)
+					if($data['hero_title'] != '')
 					{
-						$out .= "</a>";
+						$out .= $data['before_title']
+							.$a_start
+								.$data['hero_title']
+							.$a_end
+						.$data['after_title'];
+
+						if($data['hero_content'] != '')
+						{
+							$out .= "<div class='content'>"
+								.$a_start
+									.apply_filters('the_content', $data['hero_content'])
+								.$a_end
+							."</div>";
+						}
 					}
 
-				$out .= "</div>
-			</div>"
-		.$data['after_widget'];
+				$out .= "</div>"
+			.$data['after_widget'];
+		}
 
 		return $out;
 	}
@@ -59,18 +88,14 @@ class widget_hero extends WP_Widget
 
 		extract($args);
 
-		if($instance['hero_title'] != '' && $instance['hero_content'] != '')
-		{
-			$obj_hero = new mf_hero();
+		$data = $instance;
+		$data['before_widget'] = $before_widget;
+		$data['before_title'] = $before_title;
+		$data['after_title'] = $after_title;
+		$data['after_widget'] = $after_widget;
 
-			$data = $instance;
-			$data['before_widget'] = $before_widget;
-			$data['before_title'] = $before_title;
-			$data['after_title'] = $after_title;
-			$data['after_widget'] = $after_widget;
-
-			echo $obj_hero->get_widget($data);
-		}
+		$obj_hero = new mf_hero();
+		echo $obj_hero->get_widget($data);
 	}
 
 	function update($new_instance, $old_instance)
@@ -100,17 +125,11 @@ class widget_hero extends WP_Widget
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data);
 
-		echo "<p>"
-			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero'), 'xtra' => " class='widefat'"))
-		."</p>
-		<p>"
-			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'value' => $instance['hero_content'], 'text' => __("Content", 'lang_hero'), 'xtra' => " class='widefat'"))
-		."</p>
-		<p>"
-			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link'], 'xtra' => " class='widefat'"))
-		."</p>
-		<p>"
+		echo "<div class='mf_form'>"
+			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero')))
+			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']))
+			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']))
 			.get_file_button(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
-		."</p>";
+		."</div>";
 	}
 }

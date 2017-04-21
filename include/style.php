@@ -18,23 +18,33 @@ echo "@media all
 		overflow: hidden;
 	}
 
-		.widget.hero .hero_image
+		.widget.hero .align_center
 		{
-			position: relative;
-			width: 60%;
+			text-align: center;
 		}
+
+		.widget.hero .image
+		{
+			display: inline-block;
+			position: relative;
+		}
+
+			.widget.hero .align_right .image, .widget.hero .align_left .image
+			{
+				width: 60%;
+			}
 		
-			.widget.hero .align_right .hero_image
+			.widget.hero .align_right .image
 			{
 				float: right;
 			}
 
-			.widget.hero .align_left .hero_image
+			.widget.hero .align_left .image
 			{
 				float: left;
 			}
 
-			.widget.hero .hero_image:before, .widget.hero .hero_image:after
+			.widget.hero .image:before, .widget.hero .image:after
 			{
 				bottom: 0;
 				content: '';
@@ -43,26 +53,26 @@ echo "@media all
 				width: 20%;
 			}
 
-				.widget.hero .hero_image:before
+				.widget.hero .image:before
 				{
 					background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
 					left: 0;
 				}
 
-				.widget.hero .hero_image:after
+				.widget.hero .image:after
 				{
 					background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
 					right: 0;
 				}
 
-					.is_mobile .widget.hero .hero_image
+					.is_mobile .widget.hero .image
 					{
 						float: none;
 						margin-bottom: -10%;
 						width: 100%;
 					}
 
-			.widget.hero .hero_image div:after
+			.widget.hero .image div:after
 			{
 				background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
 				bottom: 0;
@@ -78,12 +88,12 @@ echo "@media all
 					display: block;
 				}
 
-				.widget.hero h3, .widget.hero .hero_content
+				.widget.hero h3, .widget.hero .content
 				{
 					position: relative;
 				}
 
-					.widget.hero .align_right h3, .widget.hero .align_right .hero_content
+					.widget.hero .align_right h3, .widget.hero .align_right .content
 					{
 						clear: left;
 						float: left;
@@ -91,7 +101,7 @@ echo "@media all
 						width: 50%;
 					}
 
-					.widget.hero .align_left h3, .widget.hero .align_left .hero_content
+					.widget.hero .align_left h3, .widget.hero .align_left .content
 					{
 						clear: right;
 						float: right;
@@ -100,7 +110,7 @@ echo "@media all
 						width: 50%;
 					}
 
-						.is_mobile .widget.hero h3, .is_mobile .widget.hero .hero_content
+						.is_mobile .widget.hero h3, .is_mobile .widget.hero .content
 						{
 							float: none;
 							margin: 0;

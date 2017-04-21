@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-16 09:50+0100\n"
+"POT-Creation-Date: 2017-04-21 14:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -30,12 +30,12 @@ msgstr "Hero"
 msgid "Title"
 msgstr "Rubrik"
 
-#: ../include/classes.php:107
+#: ../include/classes.php:105
 #: ../include/functions.php:73
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../include/classes.php:110
+#: ../include/classes.php:106
 #: ../include/functions.php:78
 msgid "Link"
 msgstr "Länk"
