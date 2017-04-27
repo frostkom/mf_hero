@@ -36,21 +36,13 @@ function meta_boxes_hero($meta_boxes)
 {
 	$meta_prefix = "mf_hero_";
 
-	/*$arr_data_widget_area = array();
-	$arr_data_widget_area[''] = "-- ".__("Choose here", 'lang_hero')." --";
-
-	foreach($GLOBALS['wp_registered_sidebars'] as $sidebar)
-	{
-		$arr_data_widget_area[$sidebar['id']] = $sidebar['name'];
-	}*/
-
 	$arr_data_link = array();
 	get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data_link);
 
 	$meta_boxes[] = array(
 		'id' => $meta_prefix.'hero',
 		'title' => __("Hero", 'lang_hero'),
-		'pages' => array('page'),
+		'post_types' => array('page'),
 		'context' => 'after_title',
 		'priority' => 'high',
 		'fields' => array(
@@ -58,7 +50,7 @@ function meta_boxes_hero($meta_boxes)
 				'name' => __("Widget Area", 'lang_hero'),
 				'id' => $meta_prefix.'widget_area',
 				'type' => 'select',
-				'options' => $arr_data_widget_area,
+				'options' => get_sidebars_for_select(),
 				'attributes' => array(
 					'condition_type' => 'hide_if_empty',
 					'condition_field' => '#'.$meta_prefix.'title, #'.$meta_prefix.'content, #'.$meta_prefix.'link, .rwmb-field input[name='.$meta_prefix.'image]',
