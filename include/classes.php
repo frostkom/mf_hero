@@ -78,8 +78,6 @@ class widget_hero extends WP_Widget
 		$control_ops = array('id_base' => 'hero-widget');
 
 		parent::__construct('hero-widget', __("Hero", 'lang_hero'), $widget_ops, $control_ops);
-
-		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
 	}
 
 	function widget($args, $instance)

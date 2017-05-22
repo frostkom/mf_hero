@@ -1,5 +1,18 @@
 <?php
 
+function init_hero()
+{
+	if(is_admin())
+	{
+
+	}
+
+	else
+	{
+		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
+	}
+}
+
 function widgets_hero()
 {
 	register_widget('widget_hero');

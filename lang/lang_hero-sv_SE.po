@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-21 14:34+0100\n"
+"POT-Creation-Date: 2017-05-22 10:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,32 +15,32 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:46
+#: ../include/classes.php:75
 msgid "Display Hero"
 msgstr "Visa Hero"
 
-#: ../include/classes.php:51
-#: ../include/functions.php:24
-#: ../include/functions.php:52
+#: ../include/classes.php:80
+#: ../include/functions.php:37
+#: ../include/functions.php:57
 msgid "Hero"
 msgstr "Hero"
 
-#: ../include/classes.php:104
-#: ../include/functions.php:68
+#: ../include/classes.php:127
+#: ../include/functions.php:77
 msgid "Title"
 msgstr "Rubrik"
 
-#: ../include/classes.php:105
-#: ../include/functions.php:73
+#: ../include/classes.php:128
+#: ../include/functions.php:86
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../include/classes.php:106
-#: ../include/functions.php:78
+#: ../include/classes.php:129
+#: ../include/functions.php:91
 msgid "Link"
 msgstr "Länk"
 
-#: ../include/functions.php:15
+#: ../include/functions.php:28
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
