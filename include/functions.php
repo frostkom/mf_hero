@@ -70,10 +70,6 @@ function meta_boxes_hero($meta_boxes)
 				),
 			),*/
 			array(
-				'id' => $meta_prefix.'image',
-				'type' => 'file_advanced',
-			),
-			array(
 				'name' => __("Title", 'lang_hero'),
 				'id' => $meta_prefix.'title',
 				'type' => 'text',
@@ -92,6 +88,16 @@ function meta_boxes_hero($meta_boxes)
 				'id' => $meta_prefix.'link',
 				'type' => 'select',
 				'options' => $arr_data_link,
+			),
+			array(
+				'id' => $meta_prefix.'image',
+				'type' => 'file_advanced',
+			),
+			array(
+				'name' => __("Fade to surrounding color", 'lang_hero'),
+				'id' => $meta_prefix.'fade',
+				'type' => 'select',
+				'options' => get_yes_no_for_select(),
 			),
 		)
 	);
@@ -143,6 +149,7 @@ function dynamic_sidebar_after_hero($widget)
 			$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
 			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
 			$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
+			$post_hero_fade = get_post_meta($post_id, $meta_prefix.'fade', true);
 
 			$data = array(
 				'before_widget' => "<div class='widget hero'>",
@@ -153,6 +160,7 @@ function dynamic_sidebar_after_hero($widget)
 				'hero_content' => $post_hero_content,
 				'hero_link' => $post_hero_link,
 				'hero_image' => $post_hero_image,
+				'hero_fade' => $post_hero_fade,
 			);
 
 			$obj_hero = new mf_hero();

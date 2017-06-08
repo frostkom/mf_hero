@@ -25,7 +25,7 @@ echo "@media all
 
 		.widget.hero .image
 		{
-			display: inline-block;
+			display: block;
 			position: relative;
 		}
 
@@ -44,7 +44,7 @@ echo "@media all
 				float: left;
 			}
 
-			.widget.hero .image:before, .widget.hero .image:after
+			.widget.hero .image.image_fade:before, .widget.hero .image.image_fade:after
 			{
 				bottom: 0;
 				content: '';
@@ -53,26 +53,26 @@ echo "@media all
 				width: 20%;
 			}
 
-				.widget.hero .image:before
+				.widget.hero .image.image_fade:before
 				{
 					background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
 					left: 0;
 				}
 
-				.widget.hero .image:after
+				.widget.hero .image.image_fade:after
 				{
 					background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
 					right: 0;
 				}
 
-					.is_mobile .widget.hero .image
+					.is_mobile .widget.hero .image.image_fade
 					{
 						float: none;
 						margin-bottom: -10%;
 						width: 100%;
 					}
 
-			.widget.hero .image div:after
+			.widget.hero .image.image_fade div:after
 			{
 				background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
 				bottom: 0;

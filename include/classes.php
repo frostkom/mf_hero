@@ -8,6 +8,8 @@ class mf_hero
 	{
 		$class = $a_start = $a_end = "";
 
+		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){		$data['hero_fade'] = 'yes';}
+
 		if($data['hero_title'] != '' || $data['hero_image'] != '')
 		{
 			if($data['hero_link'] > 0)
@@ -31,7 +33,7 @@ class mf_hero
 
 					if($data['hero_image'] != '')
 					{
-						$out .= "<div class='image'>
+						$out .= "<div class='image".($data['hero_fade'] == 'yes' ? " image_fade" : "")."'>
 							<div>"
 								.$a_start
 									."<img src='".$data['hero_image']."'>"
@@ -104,6 +106,7 @@ class widget_hero extends WP_Widget
 		$instance['hero_content'] = strip_tags($new_instance['hero_content']);
 		$instance['hero_link'] = strip_tags($new_instance['hero_link']);
 		$instance['hero_image'] = strip_tags($new_instance['hero_image']);
+		$instance['hero_fade'] = strip_tags($new_instance['hero_fade']);
 
 		return $instance;
 	}
@@ -117,6 +120,7 @@ class widget_hero extends WP_Widget
 			'hero_content' => "",
 			'hero_link' => 0,
 			'hero_image' => "",
+			'hero_fade' => 'yes',
 		);
 		$instance = wp_parse_args((array)$instance, $defaults);
 
@@ -128,6 +132,7 @@ class widget_hero extends WP_Widget
 			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']))
 			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']))
 			.get_file_button(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
+			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Fade to surrounding color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}
 }
