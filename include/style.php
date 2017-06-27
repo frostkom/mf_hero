@@ -120,12 +120,12 @@ echo "@media all
 
 					.widget.hero h3
 					{
-						font-size: 5em;
+						font-size: 5em !important;
 						font-weight: normal;
 					}
 
 						.is_mobile .widget.hero h3
 						{
-							font-size: 3em;
+							font-size: 3em !important;
 						}
 }";
