@@ -31,7 +31,7 @@ echo "@media all
 
 			.widget.hero .align_right .image, .widget.hero .align_left .image
 			{
-				width: 60%;
+				width: 59%;
 			}
 		
 			.widget.hero .align_right .image
