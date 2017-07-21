@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-08 11:08+0100\n"
+"POT-Creation-Date: 2017-07-21 07:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -36,16 +36,23 @@ msgid "Content"
 msgstr "Innehåll"
 
 #: ../include/classes.php:133
-#: ../include/functions.php:87
 msgid "Link"
 msgstr "Länk"
 
 #: ../include/classes.php:135
-#: ../include/functions.php:97
+#: ../include/functions.php:117
 msgid "Fade to surrounding color"
 msgstr "Tona till omkringliggande färg"
 
 #: ../include/functions.php:28
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
+
+#: ../include/functions.php:93
+msgid "Page"
+msgstr "Sida"
+
+#: ../include/functions.php:104
+msgid "External Link"
+msgstr "Extern länk"
 

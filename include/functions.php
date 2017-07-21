@@ -83,11 +83,31 @@ function meta_boxes_hero($meta_boxes)
 				'id' => $meta_prefix.'content',
 				'type' => 'textarea',
 			),
-			array(
+			/*array(
 				'name' => __("Link", 'lang_hero'),
 				'id' => $meta_prefix.'link',
 				'type' => 'select',
 				'options' => $arr_data_link,
+			),*/
+			array(
+				'name' => __("Page", 'lang_hero'),
+				'id' => $meta_prefix.'link',
+				'type' => 'select', //Replace with 'page'
+				'options' => $arr_data_link,
+				//'options' => get_posts_for_select(array('add_choose_here' => true, 'optgroup' => false)),
+				'attributes' => array(
+					'condition_type' => 'show_if',
+					'condition_field' => $meta_prefix.'external_link',
+				),
+			),
+			array(
+				'name' => __("External Link", 'lang_hero'),
+				'id' => $meta_prefix.'external_link',
+				'type' => 'url',
+				'attributes' => array(
+					'condition_type' => 'show_if',
+					'condition_field' => $meta_prefix.'link',
+				),
 			),
 			array(
 				'id' => $meta_prefix.'image',
@@ -147,9 +167,11 @@ function dynamic_sidebar_after_hero($widget)
 		{
 			$post_hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
 			$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
-			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
 			$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
 			$post_hero_fade = get_post_meta($post_id, $meta_prefix.'fade', true);
+
+			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
+			$post_hero_external_link = get_post_meta($post_id, $meta_prefix.'external_link', true);
 
 			$data = array(
 				'before_widget' => "<div class='widget hero'>",
@@ -159,6 +181,7 @@ function dynamic_sidebar_after_hero($widget)
 				'hero_title' => $post_hero_title,
 				'hero_content' => $post_hero_content,
 				'hero_link' => $post_hero_link,
+				'hero_external_link' => $post_hero_external_link,
 				'hero_image' => $post_hero_image,
 				'hero_fade' => $post_hero_fade,
 			);

@@ -8,6 +8,7 @@ class mf_hero
 	{
 		$class = $a_start = $a_end = "";
 
+		if(!isset($data['hero_external_link'])){						$data['hero_external_link'] = '';}
 		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){		$data['hero_fade'] = 'yes';}
 
 		if($data['hero_title'] != '' || $data['hero_image'] != '')
@@ -15,6 +16,12 @@ class mf_hero
 			if($data['hero_link'] > 0)
 			{
 				$a_start = "<a href='".get_permalink($data['hero_link'])."'>";
+				$a_end = "</a>";
+			}
+
+			else if($data['hero_external_link'] != '')
+			{
+				$a_start = "<a href='".$data['hero_external_link']."'".(preg_match("/(youtube\.com|youtu.be)/i", $data['hero_external_link']) ? " rel='wp-video-lightbox'" : "").">";
 				$a_end = "</a>";
 			}
 
