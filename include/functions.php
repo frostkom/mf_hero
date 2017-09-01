@@ -40,6 +40,18 @@ function setting_hero_bg_color_callback()
 	echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
 }
 
+function get_gcd($a, $b)
+{
+    return ($a % $b) ? get_gcd($b, $a % $b) : $b;
+}
+
+function get_ratio($x, $y)
+{
+    $gcd = get_gcd($x, $y);
+
+    return ($x / $gcd).":".($y / $gcd);
+}
+
 function meta_check_image()
 {
 	global $wpdb;
@@ -60,32 +72,49 @@ function meta_check_image()
 			list($options_params, $options) = get_params();
 			$website_max_width = isset($options['website_max_width']) ? $options['website_max_width'] : 2000;
 
-			$arr_image = wp_get_attachment_image_src($hero_image_id, 'full');
-
-			$image_width = $arr_image[1];
-			$image_height = $arr_image[2];
-			$image_ratio = ($image_width / $image_height);
-
 			if($hero_title != '')
 			{
-				$image_recommended_width = mf_format_number(($website_max_width / 2));
-				$image_recommended_ratio = mf_format_number((800 / 450));
+				$image_recommended_width = 800;
+				$image_recommended_height = 450;
+				$image_recommended_min_width = mf_format_number(($website_max_width / 2));
+				
 			}
 
 			else
 			{
-				$image_recommended_width = mf_format_number($website_max_width);
-				$image_recommended_ratio = mf_format_number((930 / 350));
+				$image_recommended_width = 930;
+				$image_recommended_height = 350;
+				$image_recommended_min_width = mf_format_number($website_max_width);
 			}
 
-			if($image_width < $image_recommended_width)
+			$arr_image = wp_get_attachment_image_src($hero_image_id, 'full');
+
+			$image_width = $arr_image[1];
+			$image_height = $arr_image[2];
+			$image_ratio = ($image_width / $image_height);			
+			$image_recommended_ratio = mf_format_number(($image_recommended_width / $image_recommended_height));
+
+			if($image_width < $image_recommended_min_width)
 			{
-				$out .= sprintf(__("The image should be at least %d px in width to fill the width of the container. It is now only %d px wide", 'lang_hero'), $image_width, $image_recommended_width);
+				$out .= "<p>".sprintf(__("The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image", 'lang_hero'), $image_width, $image_recommended_min_width)."</p>";
 			}
 
 			else if($image_ratio > ($image_recommended_ratio * 1.1) || $image_ratio < ($image_recommended_ratio * .9))
 			{
-				$out .= sprintf(__("The image should have a ratio close to %d. It now has %s (%d x %d)", 'lang_hero'), $image_recommended_ratio, $image_ratio, $image_width, $image_height);
+				$image_recommended_aspect_ratio = get_ratio($image_recommended_width, $image_recommended_height);
+				$image_aspect_ratio = get_ratio($image_width, $image_height);
+
+				$out .= get_toggler_container(array('type' => 'start', 'text' => sprintf(__("The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below.", 'lang_hero'), $image_recommended_aspect_ratio, $image_aspect_ratio)))
+					."<ol>
+						<li>".__("Press Edit next to the thumbnail above", 'lang_hero')."</li>
+						<li>".__("Press Edit image right below the image", 'lang_hero')."</li>
+						<li>".__("Make a selection on top of the image", 'lang_hero')."</li>
+						<li>".sprintf(__("Add %s in Aspect Ratio in the right column", 'lang_hero'), $image_recommended_aspect_ratio)."</li>
+						<li>".__("You might have to do #3 and #4 a few times until you are happy with the selection", 'lang_hero')."</li>
+						<li>".__("Press the crop tool to the left above the image", 'lang_hero')."</li>
+						<li>".__("If you are happy with the result, press Save and you are done!", 'lang_hero')."</li>
+					</ol>"
+				.get_toggler_container(array('type' => 'end'));
 			}
 		}
 	}
