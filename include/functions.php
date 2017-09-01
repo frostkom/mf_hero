@@ -2,12 +2,7 @@
 
 function init_hero()
 {
-	if(is_admin())
-	{
-
-	}
-
-	else
+	if(!is_admin())
 	{
 		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
 	}
@@ -43,6 +38,59 @@ function setting_hero_bg_color_callback()
 	$option = get_option($setting_key, "#019cdb");
 
 	echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
+}
+
+function meta_check_image()
+{
+	global $wpdb;
+
+	$meta_prefix = "mf_hero_";
+
+	$out = '';
+
+	$post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+
+	if($post_id > 0)
+	{
+		$hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
+		$hero_image_id = get_post_meta($post_id, $meta_prefix.'image', true);
+
+		if($hero_image_id > 0 && get_current_user_id() == 1)
+		{
+			list($options_params, $options) = get_params();
+			$website_max_width = isset($options['website_max_width']) ? $options['website_max_width'] : 2000;
+
+			$arr_image = wp_get_attachment_image_src($hero_image_id, 'full');
+
+			$image_width = $arr_image[1];
+			$image_height = $arr_image[2];
+			$image_ratio = ($image_width / $image_height);
+
+			if($hero_title != '')
+			{
+				$image_recommended_width = mf_format_number(($website_max_width / 2));
+				$image_recommended_ratio = mf_format_number((800 / 450));
+			}
+
+			else
+			{
+				$image_recommended_width = mf_format_number($website_max_width);
+				$image_recommended_ratio = mf_format_number((930 / 350));
+			}
+
+			if($image_width < $image_recommended_width)
+			{
+				$out .= sprintf(__("The image should be at least %d px in width to fill the width of the container. It is now only %d px wide", 'lang_hero'), $image_width, $image_recommended_width);
+			}
+
+			else if($image_ratio > ($image_recommended_ratio * 1.1) || $image_ratio < ($image_recommended_ratio * .9))
+			{
+				$out .= sprintf(__("The image should have a ratio close to %d. It now has %s (%d x %d)", 'lang_hero'), $image_recommended_ratio, $image_ratio, $image_width, $image_height);
+			}
+		}
+	}
+
+	return $out != '' ? $out : '&nbsp;';
 }
 
 function meta_boxes_hero($meta_boxes)
@@ -114,6 +162,11 @@ function meta_boxes_hero($meta_boxes)
 				'type' => 'file_advanced',
 			),
 			array(
+				'id' => $meta_prefix.'check_image',
+				'type' => 'custom_html',
+				'callback' => 'meta_check_image',
+			),
+			array(
 				'name' => __("Fade to surrounding color", 'lang_hero'),
 				'id' => $meta_prefix.'fade',
 				'type' => 'select',
@@ -128,9 +181,9 @@ function meta_boxes_hero($meta_boxes)
 function is_active_sidebar_hero($is_active, $widget)
 {
 	global $wp_query;
-	
+
 	$meta_prefix = "mf_hero_";
-	
+
 	$post = $wp_query->post;
 
 	if(isset($post->ID))
@@ -156,18 +209,19 @@ function dynamic_sidebar_after_hero($widget)
 	global $wp_query;
 
 	$meta_prefix = "mf_hero_";
-	
+
 	$post = $wp_query->post;
 
 	if(isset($post->ID))
 	{
 		$post_id = $post->ID;
 
-		if($widget == 'widget_front') //$post_hero_widget_area = get_post_meta($post_id, $meta_prefix.'widget_area', true);
+		if($widget == 'widget_front')
 		{
 			$post_hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
 			$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
-			$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
+			$post_hero_image_id = get_post_meta($post_id, $meta_prefix.'image', true);
+			//$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
 			$post_hero_fade = get_post_meta($post_id, $meta_prefix.'fade', true);
 
 			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
@@ -182,7 +236,8 @@ function dynamic_sidebar_after_hero($widget)
 				'hero_content' => $post_hero_content,
 				'hero_link' => $post_hero_link,
 				'hero_external_link' => $post_hero_external_link,
-				'hero_image' => $post_hero_image,
+				'hero_image_id' => $post_hero_image_id,
+				//'hero_image' => $post_hero_image,
 				'hero_fade' => $post_hero_fade,
 			);
 

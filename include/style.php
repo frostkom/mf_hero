@@ -33,7 +33,7 @@ echo "@media all
 			{
 				width: 59%;
 			}
-		
+
 			.widget.hero .align_right .image
 			{
 				float: right;

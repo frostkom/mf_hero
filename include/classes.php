@@ -8,10 +8,12 @@ class mf_hero
 	{
 		$class = $a_start = $a_end = "";
 
+		if(!isset($data['hero_image_id'])){								$data['hero_image_id'] = 0;}
+		if(!isset($data['hero_image'])){								$data['hero_image'] = '';}
 		if(!isset($data['hero_external_link'])){						$data['hero_external_link'] = '';}
 		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){		$data['hero_fade'] = 'yes';}
 
-		if($data['hero_title'] != '' || $data['hero_image'] != '')
+		if($data['hero_title'] != '' || $data['hero_image_id'] > 0 || $data['hero_image'] != '')
 		{
 			if($data['hero_link'] > 0)
 			{
@@ -25,25 +27,28 @@ class mf_hero
 				$a_end = "</a>";
 			}
 
-			if($data['hero_title'] != '' && $data['hero_image'] != '')
+			if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 			{
-				$class = "align_right";
-			}
+				if($data['hero_title'] != '')
+				{
+					$class = "align_right";
+				}
 
-			else if($data['hero_image'] != '')
-			{
-				$class = "align_center";
+				else
+				{
+					$class = "align_center";
+				}
 			}
 
 			$out = $data['before_widget']
 				."<div".($class != '' ? " class='".$class."'" : "").">";
 
-					if($data['hero_image'] != '')
+					if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 					{
 						$out .= "<div class='image".($data['hero_fade'] == 'yes' ? " image_fade" : "")."'>
 							<div>"
 								.$a_start
-									."<img src='".$data['hero_image']."'>"
+								.render_image_tag(array('id' => $data['hero_image_id'], 'src' => $data['hero_image']))
 								.$a_end
 							."</div>
 						</div>";
