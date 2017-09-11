@@ -89,16 +89,22 @@ class widget_hero extends WP_Widget
 			'description' => __("Display Hero", 'lang_hero')
 		);
 
-		$control_ops = array('id_base' => 'hero-widget');
+		$this->arr_default = array(
+			'hero_title' => "",
+			'hero_content' => "",
+			'hero_link' => 0,
+			'hero_image' => "",
+			'hero_fade' => 'yes',
+		);
 
-		parent::__construct('hero-widget', __("Hero", 'lang_hero'), $widget_ops, $control_ops);
+		parent::__construct('hero-widget', __("Hero", 'lang_hero'), $widget_ops);
 	}
 
 	function widget($args, $instance)
 	{
-		global $wpdb;
-
 		extract($args);
+
+		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$data = $instance;
 		$data['before_widget'] = $before_widget;
@@ -114,6 +120,8 @@ class widget_hero extends WP_Widget
 	{
 		$instance = $old_instance;
 
+		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
+
 		$instance['hero_title'] = strip_tags($new_instance['hero_title']);
 		$instance['hero_content'] = strip_tags($new_instance['hero_content']);
 		$instance['hero_link'] = strip_tags($new_instance['hero_link']);
@@ -125,16 +133,7 @@ class widget_hero extends WP_Widget
 
 	function form($instance)
 	{
-		global $wpdb;
-
-		$defaults = array(
-			'hero_title' => "",
-			'hero_content' => "",
-			'hero_link' => 0,
-			'hero_image' => "",
-			'hero_fade' => 'yes',
-		);
-		$instance = wp_parse_args((array)$instance, $defaults);
+		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data);

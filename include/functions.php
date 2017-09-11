@@ -77,7 +77,6 @@ function meta_check_image()
 				$image_recommended_width = 800;
 				$image_recommended_height = 450;
 				$image_recommended_min_width = mf_format_number(($website_max_width / 2));
-				
 			}
 
 			else
@@ -91,7 +90,7 @@ function meta_check_image()
 
 			$image_width = $arr_image[1];
 			$image_height = $arr_image[2];
-			$image_ratio = ($image_width / $image_height);			
+			$image_ratio = ($image_width / $image_height);
 			$image_recommended_ratio = mf_format_number(($image_recommended_width / $image_recommended_height));
 
 			if($image_width < $image_recommended_min_width)
