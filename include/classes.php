@@ -6,10 +6,10 @@ class mf_hero
 
 	function get_widget($data)
 	{
-		$class = $a_start = $a_end = "";
+		$out = $class = $a_start = $a_end = "";
 
 		if(!isset($data['hero_image_id'])){								$data['hero_image_id'] = 0;}
-		if(!isset($data['hero_image'])){								$data['hero_image'] = '';}
+		//if(!isset($data['hero_image'])){								$data['hero_image'] = '';}
 		if(!isset($data['hero_external_link'])){						$data['hero_external_link'] = '';}
 		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){		$data['hero_fade'] = 'yes';}
 
