@@ -125,8 +125,8 @@ function meta_boxes_hero($meta_boxes)
 {
 	$meta_prefix = "mf_hero_";
 
-	$arr_data_link = array();
-	get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data_link);
+	//$arr_data_link = array();
+	//get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data_link);
 
 	$meta_boxes[] = array(
 		'id' => $meta_prefix.'hero',
@@ -159,18 +159,12 @@ function meta_boxes_hero($meta_boxes)
 				'id' => $meta_prefix.'content',
 				'type' => 'textarea',
 			),
-			/*array(
-				'name' => __("Link", 'lang_hero'),
-				'id' => $meta_prefix.'link',
-				'type' => 'select',
-				'options' => $arr_data_link,
-			),*/
 			array(
 				'name' => __("Page", 'lang_hero'),
 				'id' => $meta_prefix.'link',
-				'type' => 'select', //Replace with 'page'
-				'options' => $arr_data_link,
-				//'options' => get_posts_for_select(array('add_choose_here' => true, 'optgroup' => false)),
+				'type' => 'page',
+				//'type' => 'select',
+				//'options' => $arr_data_link,
 				'attributes' => array(
 					'condition_type' => 'show_if',
 					'condition_field' => $meta_prefix.'external_link',
