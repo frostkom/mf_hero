@@ -8,10 +8,11 @@ class mf_hero
 	{
 		$out = $class = $a_start = $a_end = "";
 
-		if(!isset($data['hero_image_id'])){								$data['hero_image_id'] = 0;}
-		if(!isset($data['hero_image'])){								$data['hero_image'] = '';}
-		if(!isset($data['hero_external_link'])){						$data['hero_external_link'] = '';}
-		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){		$data['hero_fade'] = 'yes';}
+		if(!isset($data['hero_image_id'])){														$data['hero_image_id'] = 0;}
+		if(!isset($data['hero_image'])){														$data['hero_image'] = '';}
+		if(!isset($data['hero_external_link'])){												$data['hero_external_link'] = '';}
+		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){								$data['hero_fade'] = 'yes';}
+		if(!isset($data['hero_full_width_image']) || $data['hero_full_width_image'] == ''){		$data['hero_full_width_image'] = 'no';}
 
 		if($data['hero_title'] != '' || $data['hero_image_id'] > 0 || $data['hero_image'] != '')
 		{
@@ -29,14 +30,14 @@ class mf_hero
 
 			if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 			{
-				if($data['hero_title'] != '')
+				if($data['hero_title'] == '') // || $data['hero_full_width_image'] == 'yes'
 				{
-					$class = "align_right";
+					$class = "align_center";
 				}
 
 				else
 				{
-					$class = "align_center";
+					$class = "align_right";
 				}
 			}
 

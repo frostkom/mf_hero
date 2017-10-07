@@ -194,6 +194,13 @@ function meta_boxes_hero($meta_boxes)
 				'type' => 'select',
 				'options' => get_yes_no_for_select(),
 			),
+			/*array(
+				'name' => __("Full Width Image", 'lang_hero'),
+				'id' => $meta_prefix.'full_width_image',
+				'type' => 'select',
+				'options' => get_yes_no_for_select(array('add_choose_here' => true)),
+				'std' => 'no',
+			),*/
 		)
 	);
 
@@ -243,8 +250,8 @@ function dynamic_sidebar_after_hero($widget)
 			$post_hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
 			$post_hero_content = get_post_meta($post_id, $meta_prefix.'content', true);
 			$post_hero_image_id = get_post_meta($post_id, $meta_prefix.'image', true);
-			//$post_hero_image = get_post_meta_file_src(array('post_id' => $post_id, 'meta_key' => $meta_prefix.'image', 'is_image' => true));
 			$post_hero_fade = get_post_meta($post_id, $meta_prefix.'fade', true);
+			$post_hero_full_width_image = get_post_meta($post_id, $meta_prefix.'full_width_image', true);
 
 			$post_hero_link = get_post_meta($post_id, $meta_prefix.'link', true);
 			$post_hero_external_link = get_post_meta($post_id, $meta_prefix.'external_link', true);
@@ -259,8 +266,8 @@ function dynamic_sidebar_after_hero($widget)
 				'hero_link' => $post_hero_link,
 				'hero_external_link' => $post_hero_external_link,
 				'hero_image_id' => $post_hero_image_id,
-				//'hero_image' => $post_hero_image,
 				'hero_fade' => $post_hero_fade,
+				'hero_full_width_image' => $post_hero_full_width_image,
 			);
 
 			$obj_hero = new mf_hero();

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-01 12:18+0100\n"
+"POT-Creation-Date: 2017-10-07 16:22+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,11 +15,11 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:89
+#: ../include/classes.php:90
 msgid "Display Hero"
 msgstr "Visa Hero"
 
-#: ../include/classes.php:94
+#: ../include/classes.php:101
 #: ../include/functions.php:32
 #: ../include/functions.php:133
 msgid "Hero"
@@ -40,7 +40,7 @@ msgid "Link"
 msgstr "Länk"
 
 #: ../include/classes.php:147
-#: ../include/functions.php:198
+#: ../include/functions.php:192
 msgid "Fade to surrounding color"
 msgstr "Tona till omkringliggande färg"
 
@@ -48,50 +48,54 @@ msgstr "Tona till omkringliggande färg"
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
-#: ../include/functions.php:99
+#: ../include/functions.php:98
 #, php-format
 msgid "The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image"
 msgstr "Bilden borde åtminstone vara %d px bred för att fylla ut området runtom. Den är nu endast %d px bred så jag skulle rekommendera dig att ladda upp en större bild"
 
-#: ../include/functions.php:107
+#: ../include/functions.php:106
 #, php-format
 msgid "The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below."
 msgstr "Bilden borde ha ett förhållande nära %s för att bättre fylla ut området runtom. Den är nu %s men du kan ändra detta genom att gå igenom listan nedan."
 
-#: ../include/functions.php:109
+#: ../include/functions.php:108
 msgid "Press Edit next to the thumbnail above"
 msgstr "Tryck på Edit bredvid miniatyren här ovanför"
 
-#: ../include/functions.php:110
+#: ../include/functions.php:109
 msgid "Press Edit image right below the image"
 msgstr "Tryck Redigera bild under bilden"
 
-#: ../include/functions.php:111
+#: ../include/functions.php:110
 msgid "Make a selection on top of the image"
 msgstr "Gör en markering ovanpå bilden"
 
-#: ../include/functions.php:112
+#: ../include/functions.php:111
 #, php-format
 msgid "Add %s in Aspect Ratio in the right column"
 msgstr "Lägg in %s i Bildfröhållande i den högra kolumnen"
 
-#: ../include/functions.php:113
+#: ../include/functions.php:112
 msgid "You might have to do #3 and #4 a few times until you are happy with the selection"
 msgstr "Du kan behöva göra #3 och #4 ett par gånger innan du är nöjd med markeringen"
 
-#: ../include/functions.php:114
+#: ../include/functions.php:113
 msgid "Press the crop tool to the left above the image"
 msgstr "Tryck på beskärningsverktyget till vänster ovanför bilden"
 
-#: ../include/functions.php:115
+#: ../include/functions.php:114
 msgid "If you are happy with the result, press Save and you are done!"
 msgstr "Om du är nöjd med resultatet, tryck på Spara och sen är du klar!"
 
-#: ../include/functions.php:169
+#: ../include/functions.php:163
 msgid "Page"
 msgstr "Sida"
 
-#: ../include/functions.php:180
+#: ../include/functions.php:174
 msgid "External Link"
 msgstr "Extern länk"
+
+#: ../include/functions.php:199
+msgid "Full Width Image"
+msgstr "Fullbredd på bild"
 
