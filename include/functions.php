@@ -93,9 +93,14 @@ function meta_check_image()
 			$image_ratio = $image_height > 0 ? ($image_width / $image_height) : 0;
 			$image_recommended_ratio = mf_format_number(($image_recommended_width / $image_recommended_height));
 
-			if($image_width < $image_recommended_min_width)
+			if($image_width == 0)
 			{
-				$out .= "<p>".sprintf(__("The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image", 'lang_hero'), $image_width, $image_recommended_min_width)."</p>";
+				$out .= "<p>".__("The image does not seam to exist anymore", 'lang_hero')."</p>";
+			}
+
+			else if($image_width < $image_recommended_min_width)
+			{
+				$out .= "<p>".sprintf(__("The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image", 'lang_hero'), $image_recommended_min_width, $image_width)."</p>";
 			}
 
 			else if($image_ratio > ($image_recommended_ratio * 1.1) || $image_ratio < ($image_recommended_ratio * .9))
