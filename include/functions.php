@@ -235,6 +235,11 @@ function is_active_sidebar_hero($is_active, $widget)
 		}
 	}
 
+	else //If this is called from style.php it has to return true
+	{
+		$is_active = true;
+	}
+
 	return $is_active;
 }
 
