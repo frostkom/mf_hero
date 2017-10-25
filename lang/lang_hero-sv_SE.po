@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-09 14:31+0100\n"
+"POT-Creation-Date: 2017-10-25 12:21+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -45,8 +45,8 @@ msgid "Fade to surrounding color"
 msgstr "Tona till omkringliggande färg"
 
 #: ../include/functions.php:23
-msgid "Background Color"
-msgstr "Bakgrundsfärg"
+msgid "Fade Color"
+msgstr "Färg på toning"
 
 #: ../include/functions.php:98
 msgid "The image does not seam to exist anymore"

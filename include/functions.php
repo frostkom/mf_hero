@@ -20,7 +20,7 @@ function settings_hero()
 	add_settings_section($options_area, "", $options_area."_callback", BASE_OPTIONS_PAGE);
 
 	$arr_settings = array();
-	$arr_settings['setting_hero_bg_color'] = __("Background Color", 'lang_hero');
+	$arr_settings['setting_hero_bg_color'] = __("Fade Color", 'lang_hero');
 
 	show_settings_fields(array('area' => $options_area, 'settings' => $arr_settings));
 }
