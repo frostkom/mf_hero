@@ -137,7 +137,7 @@ class widget_hero extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$arr_data = array();
-		get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data);
+		get_post_children(array('add_choose_here' => true), $arr_data);
 
 		echo "<div class='mf_form'>"
 			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero')))

@@ -131,7 +131,7 @@ function meta_boxes_hero($meta_boxes)
 	$meta_prefix = "mf_hero_";
 
 	//$arr_data_link = array();
-	//get_post_children(array('add_choose_here' => true, 'output_array' => true), $arr_data_link);
+	//get_post_children(array('add_choose_here' => true), $arr_data_link);
 
 	$meta_boxes[] = array(
 		'id' => $meta_prefix.'hero',
