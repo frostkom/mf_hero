@@ -67,7 +67,7 @@ function meta_check_image()
 		$hero_title = get_post_meta($post_id, $meta_prefix.'title', true);
 		$hero_image_id = get_post_meta($post_id, $meta_prefix.'image', true);
 
-		if($hero_image_id > 0 && get_current_user_id() == 1)
+		if($hero_image_id > 0)
 		{
 			list($options_params, $options) = get_params();
 			$website_max_width = isset($options['website_max_width']) ? $options['website_max_width'] : 2000;
