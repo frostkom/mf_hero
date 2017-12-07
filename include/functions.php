@@ -5,6 +5,7 @@ function init_hero()
 	if(!is_admin())
 	{
 		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
+		//mf_enqueue_script('script_hero', plugin_dir_url(__FILE__)."script.js", get_plugin_version(__FILE__));
 	}
 }
 
