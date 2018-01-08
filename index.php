@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.1.2
+Version: 2.2.1
 Author: Martin Fors
 Author URI: http://frostkom.se
 Text Domain: lang_hero
@@ -15,20 +15,22 @@ GitHub Plugin URI: frostkom/mf_hero
 include_once("include/classes.php");
 include_once("include/functions.php");
 
-add_action('init', 'init_hero');
-add_action('widgets_init', 'widgets_hero');
+$obj_hero = new mf_hero();
+
+add_action('init', array($obj_hero, 'init'));
+add_action('widgets_init', array($obj_hero, 'widgets'));
 
 if(is_admin())
 {
 	add_action('admin_init', 'settings_hero');
 
-	add_action('rwmb_meta_boxes', 'meta_boxes_hero');
+	add_action('rwmb_meta_boxes', array($obj_hero, 'meta_boxes'));
 }
 
 else
 {
-	add_filter('is_active_sidebar', 'is_active_sidebar_hero', 10, 2);
-	add_action('dynamic_sidebar_after', 'dynamic_sidebar_after_hero');
+	add_filter('is_active_sidebar', array($obj_hero, 'is_active_sidebar'), 10, 2);
+	add_action('dynamic_sidebar_after', array($obj_hero, 'dynamic_sidebar_after'));
 }
 
 load_plugin_textdomain('lang_hero', false, dirname(plugin_basename(__FILE__)).'/lang/');
