@@ -399,7 +399,8 @@ class widget_hero extends WP_Widget
 			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero')))
 			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']))
 			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']))
-			.get_file_button(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
+			//.get_file_button(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
+			.get_media_library(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image'], 'type' => 'image'))
 			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Fade to surrounding color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}
