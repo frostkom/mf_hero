@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.2.4
+Version: 2.2.5
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: http://frostkom.se
@@ -19,7 +19,6 @@ include_once("include/functions.php");
 
 $obj_hero = new mf_hero();
 
-add_action('init', array($obj_hero, 'init'));
 add_action('widgets_init', array($obj_hero, 'widgets'));
 
 if(is_admin())
@@ -31,6 +30,8 @@ if(is_admin())
 
 else
 {
+	add_action('wp_head', array($obj_hero, 'wp_head'), 0);
+
 	add_filter('is_active_sidebar', array($obj_hero, 'is_active_sidebar'), 10, 2);
 	add_action('dynamic_sidebar_after', array($obj_hero, 'dynamic_sidebar_after'));
 }
