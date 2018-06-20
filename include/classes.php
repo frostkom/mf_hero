@@ -106,9 +106,6 @@ class mf_hero
 
 	function meta_boxes($meta_boxes)
 	{
-		//$arr_data_link = array();
-		//get_post_children(array('add_choose_here' => true), $arr_data_link);
-
 		$meta_boxes[] = array(
 			'id' => $this->meta_prefix.'hero',
 			'title' => __("Hero", 'lang_hero'),
@@ -141,11 +138,9 @@ class mf_hero
 					'type' => 'textarea',
 				),
 				array(
-					'name' => __("Page", 'lang_hero'),
+					'name' => __("Page", 'lang_hero')." <a href='".admin_url("post-new.php?post_type=page")."'><i class='fa fa-lg fa-plus'></i></a>",
 					'id' => $this->meta_prefix.'link',
 					'type' => 'page',
-					//'type' => 'select',
-					//'options' => $arr_data_link,
 					'attributes' => array(
 						'condition_type' => 'show_if',
 						'condition_field' => $this->meta_prefix.'external_link',
