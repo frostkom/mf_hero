@@ -13,7 +13,7 @@ class mf_hero
 		//mf_enqueue_script('script_hero', plugin_dir_url(__FILE__)."script.js", get_plugin_version(__FILE__));
 	}
 
-	function widgets()
+	function widgets_init()
 	{
 		register_widget('widget_hero');
 	}
