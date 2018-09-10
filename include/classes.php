@@ -104,7 +104,7 @@ class mf_hero
 		return $out != '' ? $out : '&nbsp;';
 	}
 
-	function meta_boxes($meta_boxes)
+	function rwmb_meta_boxes($meta_boxes)
 	{
 		$meta_boxes[] = array(
 			'id' => $this->meta_prefix.'hero',

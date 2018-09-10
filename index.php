@@ -3,10 +3,10 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.2.8
+Version: 2.2.10
 Licence: GPLv2 or later
 Author: Martin Fors
-Author URI: http://frostkom.se
+Author URI: https://frostkom.se
 Text Domain: lang_hero
 Domain Path: /lang
 
@@ -23,7 +23,7 @@ if(is_admin())
 {
 	add_action('admin_init', 'settings_hero');
 
-	add_action('rwmb_meta_boxes', array($obj_hero, 'meta_boxes'));
+	add_action('rwmb_meta_boxes', array($obj_hero, 'rwmb_meta_boxes'));
 }
 
 else
