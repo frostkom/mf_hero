@@ -138,7 +138,7 @@ class mf_hero
 					'type' => 'textarea',
 				),
 				array(
-					'name' => __("Page", 'lang_hero')." <a href='".admin_url("post-new.php?post_type=page")."'><i class='fa fa-plus fa-lg'></i></a>",
+					'name' => __("Page", 'lang_hero')." <a href='".admin_url("post-new.php?post_type=page")."'><i class='fa fa-plus-circle fa-lg'></i></a>",
 					'id' => $this->meta_prefix.'link',
 					'type' => 'page',
 					'attributes' => array(
