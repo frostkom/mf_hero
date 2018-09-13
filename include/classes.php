@@ -86,7 +86,7 @@ class mf_hero
 					$image_recommended_aspect_ratio = $this->get_ratio($image_recommended_width, $image_recommended_height);
 					$image_aspect_ratio = $this->get_ratio($image_width, $image_height);
 
-					$out .= get_toggler_container(array('type' => 'start', 'icon' => "fas fa-exclamation-triangle yellow", 'text' => sprintf(__("The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below.", 'lang_hero'), $image_recommended_aspect_ratio, $image_aspect_ratio)))
+					$out .= get_toggler_container(array('type' => 'start', 'icon' => "fa fa-exclamation-triangle yellow", 'text' => sprintf(__("The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below.", 'lang_hero'), $image_recommended_aspect_ratio, $image_aspect_ratio)))
 						."<ol>
 							<li>".__("Press Edit next to the thumbnail above", 'lang_hero')."</li>
 							<li>".__("Press Edit image right below the image", 'lang_hero')."</li>
