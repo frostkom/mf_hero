@@ -10,7 +10,6 @@ class mf_hero
 	function wp_head()
 	{
 		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
-		//mf_enqueue_script('script_hero', plugin_dir_url(__FILE__)."script.js", get_plugin_version(__FILE__));
 	}
 
 	function widgets_init()
@@ -104,25 +103,42 @@ class mf_hero
 		return $out != '' ? $out : '&nbsp;';
 	}
 
+	function settings_hero()
+	{
+		$options_area = __FUNCTION__;
+
+		add_settings_section($options_area, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
+
+		$arr_settings = array();
+		$arr_settings['setting_hero_bg_color'] = __("Fade Color", 'lang_hero');
+
+		show_settings_fields(array('area' => $options_area, 'object' => $this, 'settings' => $arr_settings));
+	}
+
+	function settings_hero_callback()
+	{
+		$setting_key = get_setting_key(__FUNCTION__);
+
+		echo settings_header($setting_key, __("Hero", 'lang_hero'));
+	}
+
+	function setting_hero_bg_color_callback()
+	{
+		$setting_key = get_setting_key(__FUNCTION__);
+		$option = get_option($setting_key, "#019cdb");
+
+		echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
+	}
+
 	function rwmb_meta_boxes($meta_boxes)
 	{
 		$meta_boxes[] = array(
 			'id' => $this->meta_prefix.'hero',
 			'title' => __("Hero", 'lang_hero'),
 			'post_types' => array('page'),
-			'context' => 'after_title',
+			'context' => (function_exists('is_gutenberg_page') && !isset($_GET['classic-editor']) ? 'normal' : 'after_title'),
 			'priority' => 'high',
 			'fields' => array(
-				/*array(
-					'name' => __("Widget Area", 'lang_hero'),
-					'id' => $this->meta_prefix.'widget_area',
-					'type' => 'select',
-					'options' => get_sidebars_for_select(),
-					'attributes' => array(
-						'condition_type' => 'hide_if_empty',
-						'condition_field' => '#'.$this->meta_prefix.'title, #'.$this->meta_prefix.'content, #'.$this->meta_prefix.'link, .rwmb-field input[name='.$this->meta_prefix.'image]',
-					),
-				),*/
 				array(
 					'name' => __("Title", 'lang_hero'),
 					'id' => $this->meta_prefix.'title',
@@ -170,13 +186,6 @@ class mf_hero
 					'type' => 'select',
 					'options' => get_yes_no_for_select(),
 				),
-				/*array(
-					'name' => __("Full Width Image", 'lang_hero'),
-					'id' => $this->meta_prefix.'full_width_image',
-					'type' => 'select',
-					'options' => get_yes_no_for_select(array('add_choose_here' => true)),
-					'std' => 'no',
-				),*/
 			)
 		);
 
@@ -191,7 +200,7 @@ class mf_hero
 
 		if(isset($post->ID))
 		{
-			if($widget == 'widget_front') //$post_hero_widget_area = get_post_meta($post_id, $this->meta_prefix.'widget_area', true);
+			if($widget == 'widget_front')
 			{
 				$post_id = $post->ID;
 				$post_hero_title = get_post_meta($post_id, $this->meta_prefix.'title', true);
@@ -278,7 +287,7 @@ class mf_hero
 
 			if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 			{
-				if($data['hero_title'] == '') // || $data['hero_full_width_image'] == 'yes'
+				if($data['hero_title'] == '')
 				{
 					$class = "align_center";
 				}

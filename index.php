@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.2.13
+Version: 2.2.14
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -15,13 +15,12 @@ GitHub Plugin URI: frostkom/mf_hero
 */
 
 include_once("include/classes.php");
-include_once("include/functions.php");
 
 $obj_hero = new mf_hero();
 
 if(is_admin())
 {
-	add_action('admin_init', 'settings_hero');
+	add_action('admin_init', array($obj_hero, 'settings_hero'));
 
 	add_action('rwmb_meta_boxes', array($obj_hero, 'rwmb_meta_boxes'));
 }
