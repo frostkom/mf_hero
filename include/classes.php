@@ -132,11 +132,13 @@ class mf_hero
 
 	function rwmb_meta_boxes($meta_boxes)
 	{
+		$has_gutenberg = function_exists('register_block_type') && !isset($_GET['classic-editor']);
+
 		$meta_boxes[] = array(
 			'id' => $this->meta_prefix.'hero',
 			'title' => __("Hero", 'lang_hero'),
 			'post_types' => array('page'),
-			'context' => (function_exists('is_gutenberg_page') && !isset($_GET['classic-editor']) ? 'normal' : 'after_title'),
+			'context' => ($has_gutenberg ? 'normal' : 'after_title'),
 			'priority' => 'high',
 			'fields' => array(
 				array(
