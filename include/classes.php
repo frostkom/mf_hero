@@ -9,7 +9,10 @@ class mf_hero
 
 	function wp_head()
 	{
-		mf_enqueue_style('style_hero', plugin_dir_url(__FILE__)."style.php", get_plugin_version(__FILE__));
+		$plugin_include_url = plugin_dir_url(__FILE__);
+		$plugin_version = get_plugin_version(__FILE__);
+
+		mf_enqueue_style('style_hero', $plugin_include_url."style.php", $plugin_version);
 	}
 
 	function widgets_init()
@@ -31,8 +34,6 @@ class mf_hero
 
 	function meta_check_image()
 	{
-		global $wpdb;
-
 		$out = '';
 
 		$post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
@@ -132,13 +133,11 @@ class mf_hero
 
 	function rwmb_meta_boxes($meta_boxes)
 	{
-		$has_gutenberg = function_exists('register_block_type') && !isset($_GET['classic-editor']);
-
 		$meta_boxes[] = array(
 			'id' => $this->meta_prefix.'hero',
 			'title' => __("Hero", 'lang_hero'),
 			'post_types' => array('page'),
-			'context' => ($has_gutenberg ? 'normal' : 'after_title'),
+			'context' => 'normal',
 			'priority' => 'high',
 			'fields' => array(
 				array(
