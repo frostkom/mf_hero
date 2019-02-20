@@ -9,13 +9,14 @@ class mf_hero
 
 	function wp_head()
 	{
-		if(apply_filters('get_widget_search', 'hero-widget') > 0)
-		{
+		// Have to check if rwmb_meta_boxes is used aswell
+		/*if(apply_filters('get_widget_search', 'hero-widget') > 0)
+		{*/
 			$plugin_include_url = plugin_dir_url(__FILE__);
 			$plugin_version = get_plugin_version(__FILE__);
 
 			mf_enqueue_style('style_hero', $plugin_include_url."style.php", $plugin_version);
-		}
+		//}
 	}
 
 	function widgets_init()
