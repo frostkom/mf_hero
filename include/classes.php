@@ -179,6 +179,8 @@ class mf_hero
 				array(
 					'id' => $this->meta_prefix.'image',
 					'type' => 'file_advanced',
+					'max_file_uploads' => 1,
+					'mime_type' => 'image',
 				),
 				array(
 					'id' => $this->meta_prefix.'check_image',
