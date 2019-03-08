@@ -10,7 +10,7 @@ class mf_hero
 	function wp_head()
 	{
 		// Have to check if rwmb_meta_boxes is used aswell
-		/*if(apply_filters('get_widget_search', 'hero-widget') > 0)
+		/*if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'hero-widget') > 0)
 		{*/
 			$plugin_include_url = plugin_dir_url(__FILE__);
 			$plugin_version = get_plugin_version(__FILE__);
@@ -137,64 +137,73 @@ class mf_hero
 
 	function rwmb_meta_boxes($meta_boxes)
 	{
-		$meta_boxes[] = array(
-			'id' => $this->meta_prefix.'hero',
-			'title' => __("Hero", 'lang_hero'),
-			'post_types' => array('page'),
-			'context' => 'normal',
-			'priority' => 'high',
-			'fields' => array(
-				array(
-					'name' => __("Title", 'lang_hero'),
-					'id' => $this->meta_prefix.'title',
-					'type' => 'text',
-					'attributes' => array(
-						'condition_type' => 'hide_if_empty',
-						'condition_field' => $this->meta_prefix.'content',
+		global $wpdb;
+		
+		$wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_type = %s AND (meta_key = %s OR meta_key = %s) AND meta_value != ''", 'page', $this->meta_prefix.'title', $this->meta_prefix.'image'));
+
+		if($wpdb->num_rows > 0)
+		{
+			//do_log("Hero exists. Please convert to widgets");
+
+			$meta_boxes[] = array(
+				'id' => $this->meta_prefix.'hero',
+				'title' => __("Hero", 'lang_hero'),
+				'post_types' => array('page'),
+				'context' => 'normal',
+				'priority' => 'high',
+				'fields' => array(
+					array(
+						'name' => __("Title", 'lang_hero'),
+						'id' => $this->meta_prefix.'title',
+						'type' => 'text',
+						'attributes' => array(
+							'condition_type' => 'hide_if_empty',
+							'condition_field' => $this->meta_prefix.'content',
+						),
 					),
-				),
-				array(
-					'name' => __("Content", 'lang_hero'),
-					'id' => $this->meta_prefix.'content',
-					'type' => 'textarea',
-				),
-				array(
-					'name' => __("Page", 'lang_hero')." <a href='".admin_url("post-new.php?post_type=page")."'><i class='fa fa-plus-circle fa-lg'></i></a>",
-					'id' => $this->meta_prefix.'link',
-					'type' => 'page',
-					'attributes' => array(
-						'condition_type' => 'show_if',
-						'condition_field' => $this->meta_prefix.'external_link',
+					array(
+						'name' => __("Content", 'lang_hero'),
+						'id' => $this->meta_prefix.'content',
+						'type' => 'textarea',
 					),
-				),
-				array(
-					'name' => __("External Link", 'lang_hero'),
-					'id' => $this->meta_prefix.'external_link',
-					'type' => 'url',
-					'attributes' => array(
-						'condition_type' => 'show_if',
-						'condition_field' => $this->meta_prefix.'link',
+					array(
+						'name' => __("Page", 'lang_hero')." <a href='".admin_url("post-new.php?post_type=page")."'><i class='fa fa-plus-circle fa-lg'></i></a>",
+						'id' => $this->meta_prefix.'link',
+						'type' => 'page',
+						'attributes' => array(
+							'condition_type' => 'show_if',
+							'condition_field' => $this->meta_prefix.'external_link',
+						),
 					),
-				),
-				array(
-					'id' => $this->meta_prefix.'image',
-					'type' => 'file_advanced',
-					'max_file_uploads' => 1,
-					'mime_type' => 'image',
-				),
-				array(
-					'id' => $this->meta_prefix.'check_image',
-					'type' => 'custom_html',
-					'callback' => array($this, 'meta_check_image'),
-				),
-				array(
-					'name' => __("Fade to surrounding color", 'lang_hero'),
-					'id' => $this->meta_prefix.'fade',
-					'type' => 'select',
-					'options' => get_yes_no_for_select(),
-				),
-			)
-		);
+					array(
+						'name' => __("External Link", 'lang_hero'),
+						'id' => $this->meta_prefix.'external_link',
+						'type' => 'url',
+						'attributes' => array(
+							'condition_type' => 'show_if',
+							'condition_field' => $this->meta_prefix.'link',
+						),
+					),
+					array(
+						'id' => $this->meta_prefix.'image',
+						'type' => 'file_advanced',
+						'max_file_uploads' => 1,
+						'mime_type' => 'image',
+					),
+					array(
+						'id' => $this->meta_prefix.'check_image',
+						'type' => 'custom_html',
+						'callback' => array($this, 'meta_check_image'),
+					),
+					array(
+						'name' => __("Fade to surrounding color", 'lang_hero'),
+						'id' => $this->meta_prefix.'fade',
+						'type' => 'select',
+						'options' => get_yes_no_for_select(),
+					),
+				)
+			);
+		}
 
 		return $meta_boxes;
 	}
