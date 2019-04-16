@@ -4,7 +4,7 @@ class mf_hero
 {
 	function __construct()
 	{
-		$this->meta_prefix = "mf_hero_";
+		$this->meta_prefix = 'mf_hero_';
 	}
 
 	function wp_head()
@@ -138,7 +138,7 @@ class mf_hero
 	function rwmb_meta_boxes($meta_boxes)
 	{
 		global $wpdb;
-		
+
 		$wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_type = %s AND (meta_key = %s OR meta_key = %s) AND meta_value != ''", 'page', $this->meta_prefix.'title', $this->meta_prefix.'image'));
 
 		if($wpdb->num_rows > 0)
