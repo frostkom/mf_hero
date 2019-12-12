@@ -371,13 +371,12 @@ class widget_hero extends WP_Widget
 			'hero_fade' => 'yes',
 		);
 
-		parent::__construct('hero-widget', __("Hero", 'lang_hero'), $widget_ops);
+		parent::__construct($widget_ops['classname'].'-widget', __("Hero", 'lang_hero'), $widget_ops);
 	}
 
 	function widget($args, $instance)
 	{
 		extract($args);
-
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$data = $instance;
@@ -393,7 +392,6 @@ class widget_hero extends WP_Widget
 	function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
-
 		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
 
 		$instance['hero_title'] = sanitize_text_field($new_instance['hero_title']);
@@ -416,7 +414,7 @@ class widget_hero extends WP_Widget
 			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero'), 'xtra' => " id='hero-title'"))
 			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']))
 			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']))
-			.get_media_library(array('name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image'], 'type' => 'image'))
+			.get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
 			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Fade to surrounding color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}
