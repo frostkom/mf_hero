@@ -424,9 +424,9 @@ class widget_hero extends WP_Widget
 		$new_instance = wp_parse_args((array)$new_instance, $this->arr_default);
 
 		$instance['hero_title'] = sanitize_text_field($new_instance['hero_title']);
-		$instance['hero_content'] = sanitize_text_field($new_instance['hero_content']);
+		$instance['hero_content'] = strip_tags($new_instance['hero_content']);
 		$instance['hero_link'] = sanitize_text_field($new_instance['hero_link']);
-		$instance['hero_external_link'] = sanitize_text_field($new_instance['hero_external_link']);
+		$instance['hero_external_link'] = esc_url_raw($new_instance['hero_external_link']);
 		$instance['hero_image'] = sanitize_text_field($new_instance['hero_image']);
 		$instance['hero_fade'] = sanitize_text_field($new_instance['hero_fade']);
 
