@@ -164,11 +164,14 @@ class mf_hero
 	{
 		global $wpdb;
 
-		$wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_type = %s AND (meta_key = %s OR meta_key = %s) AND meta_value != ''", 'page', $this->meta_prefix.'title', $this->meta_prefix.'image'));
+		$result = $wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_type = %s AND post_status = %s AND (meta_key = %s OR meta_key = %s) AND meta_value != '' LIMIT 0, 3", 'page', 'publish', $this->meta_prefix.'title', $this->meta_prefix.'image'));
 
 		if($wpdb->num_rows > 0)
 		{
-			//do_log("Hero exists. Please convert to widgets");
+			foreach($result as $r)
+			{
+				do_log("Hero exists in ".get_post_title($r->ID)." (".get_permalink($r->ID)."). Please convert to widgets");
+			}
 
 			$meta_boxes[] = array(
 				'id' => $this->meta_prefix.'hero',
@@ -392,6 +395,7 @@ class widget_hero extends WP_Widget
 			'hero_title' => "",
 			'hero_content' => "",
 			'hero_link' => 0,
+			'hero_external_link' => "",
 			'hero_image' => "",
 			'hero_fade' => 'yes',
 		);
@@ -422,6 +426,7 @@ class widget_hero extends WP_Widget
 		$instance['hero_title'] = sanitize_text_field($new_instance['hero_title']);
 		$instance['hero_content'] = sanitize_text_field($new_instance['hero_content']);
 		$instance['hero_link'] = sanitize_text_field($new_instance['hero_link']);
+		$instance['hero_external_link'] = sanitize_text_field($new_instance['hero_external_link']);
 		$instance['hero_image'] = sanitize_text_field($new_instance['hero_image']);
 		$instance['hero_fade'] = sanitize_text_field($new_instance['hero_fade']);
 
@@ -437,9 +442,19 @@ class widget_hero extends WP_Widget
 
 		echo "<div class='mf_form'>"
 			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero'), 'xtra' => " id='hero-title'"))
-			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']))
-			.show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']))
-			.get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
+			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']));
+
+			if($instance['hero_external_link'] == '')
+			{
+				echo show_select(array('data' => $arr_data, 'name' => $this->get_field_name('hero_link'), 'text' => __("Link", 'lang_hero'), 'value' => $instance['hero_link']));
+			}
+
+			if(!($instance['hero_link'] > 0))
+			{
+				echo show_textfield(array('type' => 'url', 'name' => $this->get_field_name('hero_external_link'), 'value' => $instance['hero_external_link'], 'text' => __("External Link", 'lang_hero')));
+			}
+
+			echo get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
 			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Fade to surrounding color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}

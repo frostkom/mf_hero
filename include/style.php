@@ -128,4 +128,9 @@ echo "@media all
 						{
 							font-size: 3em !important;
 						}
+
+					.widget.hero .content p
+					{
+						padding-bottom: .5em;
+					}
 }";
