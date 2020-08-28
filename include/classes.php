@@ -386,7 +386,7 @@ class widget_hero extends WP_Widget
 {
 	function __construct()
 	{
-		$widget_ops = array(
+		$this->widget_ops = array(
 			'classname' => 'hero',
 			'description' => __("Display Hero", 'lang_hero')
 		);
@@ -400,7 +400,7 @@ class widget_hero extends WP_Widget
 			'hero_fade' => 'yes',
 		);
 
-		parent::__construct($widget_ops['classname'].'-widget', __("Hero", 'lang_hero'), $widget_ops);
+		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Hero", 'lang_hero'), $this->widget_ops);
 	}
 
 	function widget($args, $instance)
@@ -441,7 +441,7 @@ class widget_hero extends WP_Widget
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
 		echo "<div class='mf_form'>"
-			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero'), 'xtra' => " id='hero-title'"))
+			.show_textfield(array('name' => $this->get_field_name('hero_title'), 'value' => $instance['hero_title'], 'text' => __("Title", 'lang_hero'), 'xtra' => " id='".$this->widget_ops['classname']."-title'"))
 			.show_textarea(array('name' => $this->get_field_name('hero_content'), 'text' => __("Content", 'lang_hero'), 'value' => $instance['hero_content']));
 
 			if($instance['hero_external_link'] == '')
