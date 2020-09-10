@@ -63,9 +63,13 @@ class mf_hero
 
 	function meta_check_image()
 	{
+		global $post;
+
 		$out = '';
 
-		$post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+		//$post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
+		//$post_id = check_var('post', 'int');
+		$post_id = $post->ID;
 
 		if($post_id > 0)
 		{
