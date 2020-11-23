@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.2.29
+Version: 2.2.30
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se

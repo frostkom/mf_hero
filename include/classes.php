@@ -78,10 +78,24 @@ class mf_hero
 
 			if($hero_image_id > 0)
 			{
-				$obj_theme_core = new mf_theme_core();
-				$obj_theme_core->get_params();
+				if(class_exists('mf_theme_core'))
+				{
+					global $obj_theme_core;
 
-				$website_max_width = isset($obj_theme_core->options['website_max_width']) ? $obj_theme_core->options['website_max_width'] : 2000;
+					if(!isset($obj_theme_core))
+					{
+						$obj_theme_core = new mf_theme_core();
+					}
+
+					$obj_theme_core->get_params();
+
+					$website_max_width = isset($obj_theme_core->options['website_max_width']) ? $obj_theme_core->options['website_max_width'] : 2000;
+				}
+
+				else
+				{
+					$website_max_width = 2000;
+				}
 
 				if($hero_title != '')
 				{
