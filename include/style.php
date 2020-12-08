@@ -9,13 +9,19 @@ if(!defined('ABSPATH'))
 	require_once($folder."wp-load.php");
 }
 
-$setting_hero_bg_color = get_option_or_default('setting_hero_bg_color', "#019cdb");
+$setting_hero_bg_color = get_option('setting_hero_bg_color');
 
 echo "@media all
 {
 	.widget.hero > div
-	{
-		overflow: hidden;
+	{";
+
+		if($setting_hero_bg_color != '')
+		{
+			echo "background: ".$setting_hero_bg_color.";";
+		}
+
+		echo "overflow: hidden;
 	}
 
 		.widget.hero .align_center
@@ -34,56 +40,69 @@ echo "@media all
 				width: 59%;
 			}
 
-			.widget.hero .align_right .image
+			.widget.hero .align_right
 			{
-				float: right;
+				padding-left: 2em;
 			}
+
+				.widget.hero .align_right .image
+				{
+					float: right;
+				}
 
 			.widget.hero .align_left .image
 			{
-				float: left;
+				padding-right: 2em;
 			}
 
-			.widget.hero .image.image_fade:before, .widget.hero .image.image_fade:after
+				.widget.hero .align_left .image
+				{
+					float: left;
+				}";
+
+			if($setting_hero_bg_color != '')
 			{
-				bottom: 0;
-				content: '';
-				position: absolute;
-				top: 0;
-				width: 20%;
-			}
-
-				.widget.hero .image.image_fade:before
+				echo ".widget.hero .image.image_fade:before, .widget.hero .image.image_fade:after
 				{
-					background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
-					left: 0;
+					bottom: 0;
+					content: '';
+					position: absolute;
+					top: 0;
+					width: 20%;
 				}
 
-				.widget.hero .image.image_fade:after
-				{
-					background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
-					right: 0;
-				}
-
-					.is_mobile .widget.hero .image.image_fade
+					.widget.hero .image.image_fade:before
 					{
-						float: none;
-						margin-bottom: -10%;
-						width: 100%;
+						background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
+						left: 0;
 					}
 
-			.widget.hero .image.image_fade div:after
-			{
-				background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
-				bottom: 0;
-				content: '';
-				left: 0;
-				position: absolute;
-				right: 0;
-				height: 20%;
+					.widget.hero .image.image_fade:after
+					{
+						background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
+						right: 0;
+					}
+
+						.is_mobile .widget.hero .image.image_fade
+						{
+							float: none;
+							margin-bottom: -10%;
+							width: 100%;
+						}
+
+				.widget.hero .image.image_fade div:after
+				{
+					background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
+					bottom: 0;
+					content: '';
+					left: 0;
+					position: absolute;
+					right: 0;
+					height: 20%;
+				}";
 			}
 
-				.widget.hero img
+				echo ".widget.hero img
 				{
 					display: block;
 				}
