@@ -24,6 +24,12 @@ echo "@media all
 		echo "overflow: hidden;
 	}
 
+		.widget.hero .has_text
+		{
+			padding-right: 2em;
+			padding-left: 2em;
+		}
+
 		.widget.hero .align_center
 		{
 			text-align: center;
@@ -40,9 +46,9 @@ echo "@media all
 				width: 59%;
 			}
 
-			.widget.hero .align_right
+			.widget.hero .align_right.has_text
 			{
-				padding-left: 2em;
+				padding-right: 0;
 			}
 
 				.widget.hero .align_right .image
@@ -50,9 +56,9 @@ echo "@media all
 					float: right;
 				}
 
-			.widget.hero .align_left .image
+			.widget.hero .align_left.has_text
 			{
-				padding-right: 2em;
+				padding-left: 0;
 			}
 
 				.widget.hero .align_left .image
@@ -150,6 +156,6 @@ echo "@media all
 
 					.widget.hero .content p
 					{
-						padding-bottom: .5em;
+						padding-bottom: 1em;
 					}
 }";

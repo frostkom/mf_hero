@@ -301,32 +301,34 @@ class mf_hero
 		{
 			$post_id = $post->ID;
 
-			if($widget == 'widget_front')
+			switch($widget)
 			{
-				$post_hero_title = get_post_meta($post_id, $this->meta_prefix.'title', true);
-				$post_hero_content = get_post_meta($post_id, $this->meta_prefix.'content', true);
-				$post_hero_image_id = get_post_meta($post_id, $this->meta_prefix.'image', true);
-				$post_hero_fade = get_post_meta($post_id, $this->meta_prefix.'fade', true);
-				$post_hero_full_width_image = get_post_meta($post_id, $this->meta_prefix.'full_width_image', true);
+				case 'widget_front':
+					$post_hero_title = get_post_meta($post_id, $this->meta_prefix.'title', true);
+					$post_hero_content = get_post_meta($post_id, $this->meta_prefix.'content', true);
+					$post_hero_image_id = get_post_meta($post_id, $this->meta_prefix.'image', true);
+					$post_hero_fade = get_post_meta($post_id, $this->meta_prefix.'fade', true);
+					$post_hero_full_width_image = get_post_meta($post_id, $this->meta_prefix.'full_width_image', true);
 
-				$post_hero_link = get_post_meta($post_id, $this->meta_prefix.'link', true);
-				$post_hero_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
+					$post_hero_link = get_post_meta($post_id, $this->meta_prefix.'link', true);
+					$post_hero_external_link = get_post_meta($post_id, $this->meta_prefix.'external_link', true);
 
-				$data = array(
-					'before_widget' => "<div class='widget hero'>",
-					'before_title' => "<h3>",
-					'after_title' => "</h3>",
-					'after_widget' => "</div>",
-					'hero_title' => $post_hero_title,
-					'hero_content' => $post_hero_content,
-					'hero_link' => $post_hero_link,
-					'hero_external_link' => $post_hero_external_link,
-					'hero_image_id' => $post_hero_image_id,
-					'hero_fade' => $post_hero_fade,
-					'hero_full_width_image' => $post_hero_full_width_image,
-				);
+					$data = array(
+						'before_widget' => "<div class='widget hero'>",
+						'before_title' => "<h3>",
+						'after_title' => "</h3>",
+						'after_widget' => "</div>",
+						'hero_title' => $post_hero_title,
+						'hero_content' => $post_hero_content,
+						'hero_link' => $post_hero_link,
+						'hero_external_link' => $post_hero_external_link,
+						'hero_image_id' => $post_hero_image_id,
+						'hero_fade' => $post_hero_fade,
+						'hero_full_width_image' => $post_hero_full_width_image,
+					);
 
-				echo $this->get_widget($data);
+					echo $this->get_widget($data);
+				break;
 			}
 		}
 	}
@@ -355,16 +357,21 @@ class mf_hero
 				$a_end = "</a>";
 			}
 
+			if($data['hero_title'] != '')
+			{
+				$class .= ($class != '' ? " " : "")."has_text";
+			}
+
 			if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 			{
 				if($data['hero_title'] == '')
 				{
-					$class = "align_center";
+					$class .= ($class != '' ? " " : "")."align_center";
 				}
 
 				else
 				{
-					$class = "align_right";
+					$class .= ($class != '' ? " " : "")."align_right";
 				}
 			}
 
@@ -431,6 +438,8 @@ class widget_hero extends WP_Widget
 
 	function widget($args, $instance)
 	{
+		global $obj_hero;
+
 		extract($args);
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
@@ -440,7 +449,11 @@ class widget_hero extends WP_Widget
 		$data['after_title'] = $after_title;
 		$data['after_widget'] = $after_widget;
 
-		$obj_hero = new mf_hero();
+		if(!isset($obj_hero))
+		{
+			$obj_hero = new mf_hero();
+		}
+
 		echo $obj_hero->get_widget($data);
 	}
 
