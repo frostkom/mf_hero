@@ -118,21 +118,22 @@ echo "@media all
 					position: relative;
 				}
 
-					.widget.hero .align_right h3, .widget.hero .align_right .content
+					.widget.hero .align_right h3, .widget.hero .align_right .content, .widget.hero .align_left h3, .widget.hero .align_left .content
 					{
 						clear: left;
 						float: left;
-						margin-right: -10%;
 						width: 50%;
+					}
+
+					.widget.hero .align_right h3, .widget.hero .align_right .content
+					{
+						margin-right: -10% !important;
 					}
 
 					.widget.hero .align_left h3, .widget.hero .align_left .content
 					{
-						clear: right;
-						float: right;
-						margin-left: -10%;
+						margin-left: -10% !important;
 						text-align: right;
-						width: 50%;
 					}
 
 						.is_mobile .widget.hero h3, .is_mobile .widget.hero .content
@@ -146,7 +147,7 @@ echo "@media all
 					.widget.hero h3
 					{
 						font-size: 5em !important;
-						font-weight: normal;
+						margin-top: 1.3em !important;
 					}
 
 						.is_mobile .widget.hero h3

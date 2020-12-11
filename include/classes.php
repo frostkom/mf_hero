@@ -392,9 +392,9 @@ class mf_hero
 					if($data['hero_title'] != '')
 					{
 						$out .= $data['before_title']
-							.$a_start
+							.($a_start != '' ? $a_start : "<span>")
 								.$data['hero_title']
-							.$a_end
+							.($a_end != '' ? $a_end : "</span>")
 						.$data['after_title'];
 
 						if($data['hero_content'] != '')
