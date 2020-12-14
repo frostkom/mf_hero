@@ -173,7 +173,7 @@ class mf_hero
 	function setting_hero_bg_color_callback()
 	{
 		$setting_key = get_setting_key(__FUNCTION__);
-		$option = get_option($setting_key, "#019cdb");
+		$option = get_option($setting_key);
 
 		echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
 	}
@@ -375,7 +375,7 @@ class mf_hero
 				}
 			}
 
-			$out = $data['before_widget']
+			$out = str_replace(" hero", ($data['hero_fade'] == 'yes' ? " hero allow_bg_color" : " hero"), $data['before_widget'])
 				."<div".($class != '' ? " class='".$class."'" : "").">";
 
 					if($data['hero_image_id'] > 0 || $data['hero_image'] != '')

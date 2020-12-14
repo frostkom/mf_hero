@@ -12,151 +12,156 @@ if(!defined('ABSPATH'))
 $setting_hero_bg_color = get_option('setting_hero_bg_color');
 
 echo "@media all
-{
-	.widget.hero > div
-	{";
+{";
 
-		if($setting_hero_bg_color != '')
+	if($setting_hero_bg_color != '')
+	{
+		echo ".widget.hero.allow_bg_color
 		{
-			echo "background: ".$setting_hero_bg_color.";";
-		}
-
-		echo "overflow: hidden;
+			background: ".$setting_hero_bg_color.";
+		}";
 	}
 
-		.widget.hero .has_text
+		echo "#wrapper .widget.hero > div
 		{
-			padding-right: 2em;
-			padding-left: 2em;
+			overflow: hidden;
+			padding-top: 0;
+			padding-bottom: 0;
 		}
 
-		.widget.hero .align_center
-		{
-			text-align: center;
-		}
-
-		.widget.hero .image
-		{
-			display: block;
-			position: relative;
-		}
-
-			.widget.hero .align_right .image, .widget.hero .align_left .image
+			.widget.hero .has_text
 			{
-				width: 59%;
+				padding-right: 2em;
+				padding-left: 2em;
 			}
 
-			.widget.hero .align_right.has_text
+			.widget.hero .align_center
 			{
-				padding-right: 0;
+				text-align: center;
 			}
 
-				.widget.hero .align_right .image
+			.widget.hero .image
+			{
+				display: block;
+				position: relative;
+			}
+
+				.widget.hero .align_right .image, .widget.hero .align_left .image
 				{
-					float: right;
+					width: 59%;
 				}
 
-			.widget.hero .align_left.has_text
-			{
-				padding-left: 0;
-			}
-
-				.widget.hero .align_left .image
+				.widget.hero .align_right.has_text
 				{
-					float: left;
-				}";
-
-			if($setting_hero_bg_color != '')
-			{
-				echo ".widget.hero .image.image_fade:before, .widget.hero .image.image_fade:after
-				{
-					bottom: 0;
-					content: '';
-					position: absolute;
-					top: 0;
-					width: 20%;
+					padding-right: 0;
 				}
 
-					.widget.hero .image.image_fade:before
+					.widget.hero .align_right .image
 					{
-						background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
-						left: 0;
+						float: right;
 					}
 
-					.widget.hero .image.image_fade:after
-					{
-						background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
-						right: 0;
-					}
-
-						.is_mobile .widget.hero .image.image_fade
-						{
-							float: none;
-							margin-bottom: -10%;
-							width: 100%;
-						}
-
-				.widget.hero .image.image_fade div:after
+				.widget.hero .align_left.has_text
 				{
-					background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
-					bottom: 0;
-					content: '';
-					left: 0;
-					position: absolute;
-					right: 0;
-					height: 20%;
-				}";
-			}
-
-				echo ".widget.hero img
-				{
-					display: block;
+					padding-left: 0;
 				}
 
-				.widget.hero h3, .widget.hero .content
-				{
-					position: relative;
-				}
-
-					.widget.hero .align_right h3, .widget.hero .align_right .content, .widget.hero .align_left h3, .widget.hero .align_left .content
+					.widget.hero .align_left .image
 					{
-						clear: left;
 						float: left;
-						width: 50%;
-					}
+					}";
 
-					.widget.hero .align_right h3, .widget.hero .align_right .content
+				if($setting_hero_bg_color != '')
+				{
+					echo ".widget.hero .image.image_fade:before, .widget.hero .image.image_fade:after
 					{
-						margin-right: -10% !important;
+						bottom: 0;
+						content: '';
+						position: absolute;
+						top: 0;
+						width: 20%;
 					}
 
-					.widget.hero .align_left h3, .widget.hero .align_left .content
-					{
-						margin-left: -10% !important;
-						text-align: right;
-					}
-
-						.is_mobile .widget.hero h3, .is_mobile .widget.hero .content
+						.widget.hero .image.image_fade:before
 						{
-							float: none;
-							margin: 0;
-							text-align: left;
-							width: 100%;
+							background: linear-gradient(to right, ".$setting_hero_bg_color." 0, transparent 100%);
+							left: 0;
 						}
 
-					.widget.hero h3
-					{
-						font-size: 5em !important;
-						margin-top: 1.3em !important;
-					}
-
-						.is_mobile .widget.hero h3
+						.widget.hero .image.image_fade:after
 						{
-							font-size: 3em !important;
+							background: linear-gradient(to left, ".$setting_hero_bg_color." 0, transparent 100%);
+							right: 0;
 						}
 
-					.widget.hero .content p
+							.is_mobile .widget.hero .image.image_fade
+							{
+								float: none;
+								margin-bottom: -10%;
+								width: 100%;
+							}
+
+					.widget.hero .image.image_fade div:after
 					{
-						padding-bottom: 1em;
+						background: linear-gradient(to top, ".$setting_hero_bg_color." 0, transparent 100%);
+						bottom: 0;
+						content: '';
+						left: 0;
+						position: absolute;
+						right: 0;
+						height: 20%;
+					}";
+				}
+
+					echo ".widget.hero img
+					{
+						display: block;
 					}
+
+					.widget.hero h3, .widget.hero .content
+					{
+						position: relative;
+					}
+
+						.widget.hero .align_right h3, .widget.hero .align_right .content, .widget.hero .align_left h3, .widget.hero .align_left .content
+						{
+							clear: left;
+							float: left;
+							width: 50%;
+						}
+
+						.widget.hero .align_right h3, .widget.hero .align_right .content
+						{
+							margin-right: -10% !important;
+						}
+
+						.widget.hero .align_left h3, .widget.hero .align_left .content
+						{
+							margin-left: -10% !important;
+							text-align: right;
+						}
+
+							.is_mobile .widget.hero h3, .is_mobile .widget.hero .content
+							{
+								float: none;
+								margin: 0;
+								text-align: left;
+								width: 100%;
+							}
+
+						.widget.hero h3
+						{
+							font-size: 5em !important;
+							margin-top: 1.3em !important;
+						}
+
+							.is_mobile .widget.hero h3
+							{
+								font-size: 3em !important;
+							}
+
+						.widget.hero .content p
+						{
+							padding-bottom: 1em;
+						}
 }";

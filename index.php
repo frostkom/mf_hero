@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.3.2
+Version: 2.3.3
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -20,6 +20,8 @@ $obj_hero = new mf_hero();
 
 if(is_admin())
 {
+	register_uninstall_hook(__FILE__, 'uninstall_hero');
+
 	add_action('admin_init', array($obj_hero, 'settings_hero'));
 	add_action('admin_init', array($obj_hero, 'admin_init'), 0);
 
@@ -43,4 +45,11 @@ load_plugin_textdomain('lang_hero', false, dirname(plugin_basename(__FILE__))."/
 function activate_hero()
 {
 	require_plugin("meta-box/meta-box.php", "Meta Box");
+}
+
+function uninstall_hero()
+{
+	mf_uninstall_plugin(array(
+		'options' => array('setting_hero_bg_color', 'setting_hero_text_color'),
+	));
 }
