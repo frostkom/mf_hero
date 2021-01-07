@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description: 
-Version: 2.3.3
+Version: 2.4.2
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://frostkom.se
@@ -22,7 +22,7 @@ if(is_admin())
 {
 	register_uninstall_hook(__FILE__, 'uninstall_hero');
 
-	add_action('admin_init', array($obj_hero, 'settings_hero'));
+	//add_action('admin_init', array($obj_hero, 'settings_hero'));
 	add_action('admin_init', array($obj_hero, 'admin_init'), 0);
 
 	add_action('rwmb_meta_boxes', array($obj_hero, 'rwmb_meta_boxes'));
@@ -35,6 +35,8 @@ else
 	add_filter('is_active_sidebar', array($obj_hero, 'is_active_sidebar'), 10, 2);
 	add_action('dynamic_sidebar_after', array($obj_hero, 'dynamic_sidebar_after'));
 }
+
+add_filter('filter_options_params', array($obj_hero, 'filter_options_params'));
 
 add_filter('filter_is_file_used', array($obj_hero, 'filter_is_file_used'));
 

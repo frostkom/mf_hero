@@ -19,31 +19,6 @@ class mf_hero
 		//}
 	}
 
-	function filter_is_file_used($arr_used)
-	{
-		global $wpdb;
-
-		$result = $wpdb->get_results($wpdb->prepare("SELECT post_id FROM ".$wpdb->postmeta." WHERE meta_key = %s AND meta_value = %s", $this->meta_prefix.'image', $arr_used['id']));
-		$rows = $wpdb->num_rows;
-
-		if($rows > 0)
-		{
-			$arr_used['amount'] += $rows;
-
-			foreach($result as $r)
-			{
-				if($arr_used['example'] != '')
-				{
-					break;
-				}
-
-				$arr_used['example'] = admin_url("post.php?action=edit&post=".$r->post_id);
-			}
-		}
-
-		return $arr_used;
-	}
-
 	function widgets_init()
 	{
 		register_widget('widget_hero');
@@ -151,7 +126,7 @@ class mf_hero
 		return $out != '' ? $out : '&nbsp;';
 	}
 
-	function settings_hero()
+	/*function settings_hero()
 	{
 		$options_area = __FUNCTION__;
 
@@ -176,7 +151,7 @@ class mf_hero
 		$option = get_option($setting_key);
 
 		echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
-	}
+	}*/
 
 	function admin_init()
 	{
@@ -331,6 +306,40 @@ class mf_hero
 				break;
 			}
 		}
+	}
+
+	function filter_options_params($options_params)
+	{
+		$options_params[] = array('category' => __("Hero", 'lang_hero'), 'id' => 'mf_hero');
+			$options_params[] = array('type' => 'color', 'id' => 'hero_bg_color', 'title' => __("Fade Color", 'lang_hero'), 'default' => get_option('setting_hero_bg_color'));
+		$options_params[] = array('category_end' => "");
+
+		return $options_params;
+	}
+
+	function filter_is_file_used($arr_used)
+	{
+		global $wpdb;
+
+		$result = $wpdb->get_results($wpdb->prepare("SELECT post_id FROM ".$wpdb->postmeta." WHERE meta_key = %s AND meta_value = %s", $this->meta_prefix.'image', $arr_used['id']));
+		$rows = $wpdb->num_rows;
+
+		if($rows > 0)
+		{
+			$arr_used['amount'] += $rows;
+
+			foreach($result as $r)
+			{
+				if($arr_used['example'] != '')
+				{
+					break;
+				}
+
+				$arr_used['example'] = admin_url("post.php?action=edit&post=".$r->post_id);
+			}
+		}
+
+		return $arr_used;
 	}
 
 	function get_widget($data)

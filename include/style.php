@@ -9,7 +9,19 @@ if(!defined('ABSPATH'))
 	require_once($folder."wp-load.php");
 }
 
-$setting_hero_bg_color = get_option('setting_hero_bg_color');
+$obj_theme_core = new mf_theme_core();
+
+$obj_theme_core->get_params();
+
+if(isset($obj_theme_core->options['hero_bg_color']) && $obj_theme_core->options['hero_bg_color'] != '')
+{
+	$setting_hero_bg_color = $obj_theme_core->options['hero_bg_color'];
+}
+
+else
+{
+	$setting_hero_bg_color = get_option('setting_hero_bg_color');
+}
 
 echo "@media all
 {";
