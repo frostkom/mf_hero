@@ -126,41 +126,6 @@ class mf_hero
 		return $out != '' ? $out : '&nbsp;';
 	}
 
-	/*function settings_hero()
-	{
-		$options_area = __FUNCTION__;
-
-		add_settings_section($options_area, "", array($this, $options_area."_callback"), BASE_OPTIONS_PAGE);
-
-		$arr_settings = array();
-		$arr_settings['setting_hero_bg_color'] = __("Fade Color", 'lang_hero');
-
-		show_settings_fields(array('area' => $options_area, 'object' => $this, 'settings' => $arr_settings));
-	}
-
-	function settings_hero_callback()
-	{
-		$setting_key = get_setting_key(__FUNCTION__);
-
-		echo settings_header($setting_key, __("Hero", 'lang_hero'));
-	}
-
-	function setting_hero_bg_color_callback()
-	{
-		$setting_key = get_setting_key(__FUNCTION__);
-		$option = get_option($setting_key);
-
-		echo show_textfield(array('type' => 'color', 'name' => $setting_key, 'value' => $option));
-	}*/
-
-	function admin_init()
-	{
-		if(!is_plugin_active("mf_base/index.php"))
-		{
-			deactivate_plugins(str_replace("include/classes.php", "index.php", plugin_basename(__FILE__)));
-		}
-	}
-
 	function rwmb_meta_boxes($meta_boxes)
 	{
 		global $wpdb;
