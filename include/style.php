@@ -110,6 +110,7 @@ echo "@media all
 							{
 								float: none;
 								margin-bottom: -10%;
+								text-align: center;
 								width: 100%;
 							}
 
@@ -127,7 +128,7 @@ echo "@media all
 
 					echo ".widget.hero img
 					{
-						display: block;
+						display: inline-block;
 					}
 
 					.widget.hero h3, .widget.hero .content
@@ -157,7 +158,7 @@ echo "@media all
 							{
 								float: none;
 								margin: 0;
-								text-align: left;
+								text-align: center;
 								width: 100%;
 							}
 
