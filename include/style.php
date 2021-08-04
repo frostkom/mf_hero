@@ -9,7 +9,10 @@ if(!defined('ABSPATH'))
 	require_once($folder."wp-load.php");
 }
 
-$obj_theme_core = new mf_theme_core();
+if(!isset($obj_theme_core))
+{
+	$obj_theme_core = new mf_theme_core();
+}
 
 $obj_theme_core->get_params();
 
