@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-08 16:45+0100\n"
+"POT-Creation-Date: 2022-02-15 09:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,87 +15,123 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:79
+#: ../include/classes.php:98
 msgid "The image does not seam to exist anymore"
 msgstr "Bilden verkar inte finnas kvar längre"
 
-#: ../include/classes.php:84
+#: ../include/classes.php:103
 #, php-format
 msgid "The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image"
 msgstr "Bilden borde åtminstone vara %d px bred för att fylla ut området runtom. Den är nu endast %d px bred så jag skulle rekommendera dig att ladda upp en större bild"
 
-#: ../include/classes.php:92
+#: ../include/classes.php:111
 #, php-format
 msgid "The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below."
 msgstr "Bilden borde ha ett förhållande nära %s för att bättre fylla ut området runtom. Den är nu %s men du kan ändra detta genom att gå igenom listan nedan."
 
-#: ../include/classes.php:94
+#: ../include/classes.php:113
 msgid "Press Edit next to the thumbnail above"
 msgstr "Tryck på Edit bredvid miniatyren här ovanför"
 
-#: ../include/classes.php:95
+#: ../include/classes.php:114
 msgid "Press Edit image right below the image"
 msgstr "Tryck Redigera bild under bilden"
 
-#: ../include/classes.php:96
+#: ../include/classes.php:115
 msgid "Make a selection on top of the image"
 msgstr "Gör en markering ovanpå bilden"
 
-#: ../include/classes.php:97
+#: ../include/classes.php:116
 #, php-format
 msgid "Add %s in Aspect Ratio in the right column"
 msgstr "Lägg in %s i Bildfröhållande i den högra kolumnen"
 
-#: ../include/classes.php:98
+#: ../include/classes.php:117
 msgid "You might have to do #3 and #4 a few times until you are happy with the selection"
 msgstr "Du kan behöva göra #3 och #4 ett par gånger innan du är nöjd med markeringen"
 
-#: ../include/classes.php:99
+#: ../include/classes.php:118
 msgid "Press the crop tool to the left above the image"
 msgstr "Tryck på beskärningsverktyget till vänster ovanför bilden"
 
-#: ../include/classes.php:100
+#: ../include/classes.php:119
 msgid "If you are happy with the result, press Save and you are done!"
 msgstr "Om du är nöjd med resultatet, tryck på Spara och sen är du klar!"
 
-#: ../include/classes.php:117
-#: ../include/classes.php:357
-#: ../include/functions.php:19
+#: ../include/classes.php:144
+#: ../include/classes.php:278
+#: ../include/classes.php:435
 msgid "Hero"
 msgstr "Hero"
 
-#: ../include/classes.php:133
-#: ../include/classes.php:399
+#: ../include/classes.php:150
+#: ../include/classes.php:504
 msgid "Title"
 msgstr "Rubrik"
 
-#: ../include/classes.php:142
-#: ../include/classes.php:400
+#: ../include/classes.php:159
+#: ../include/classes.php:505
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../include/classes.php:147
+#: ../include/classes.php:164
 msgid "Page"
 msgstr "Sida"
 
-#: ../include/classes.php:158
+#: ../include/classes.php:173
+#: ../include/classes.php:514
 msgid "External Link"
 msgstr "Extern länk"
 
-#: ../include/classes.php:176
-#: ../include/classes.php:403
+#: ../include/classes.php:193
 msgid "Fade to surrounding color"
 msgstr "Tona till omkringliggande färg"
 
-#: ../include/classes.php:346
+#: ../include/classes.php:279
+msgid "Fade Color"
+msgstr "Färg på toning"
+
+#: ../include/classes.php:422
 msgid "Display Hero"
 msgstr "Visa Hero"
 
-#: ../include/classes.php:401
+#: ../include/classes.php:478
+msgid "Left"
+msgstr "Vänster"
+
+#: ../include/classes.php:479
+msgid "Center"
+msgstr "Centrera"
+
+#: ../include/classes.php:480
+msgid "Right"
+msgstr "Höger"
+
+#: ../include/classes.php:481
+msgid "Ontop"
+msgstr "Ovanpå"
+
+#: ../include/classes.php:489
+msgid "Fade"
+msgstr "Toning"
+
+#: ../include/classes.php:490
+msgid "No"
+msgstr "Nej"
+
+#: ../include/classes.php:491
+msgid "Solid"
+msgstr "Hel"
+
+#: ../include/classes.php:509
 msgid "Link"
 msgstr "Länk"
 
-#: ../include/functions.php:10
-msgid "Fade Color"
-msgstr "Färg på toning"
+#: ../include/classes.php:517
+msgid "Align Content"
+msgstr "Linjera innehåll"
+
+#: ../include/classes.php:519
+msgid "Overlay Color"
+msgstr "Färg ovanpå bild"
 

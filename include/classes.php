@@ -314,6 +314,7 @@ class mf_hero
 		if(!isset($data['hero_image_id'])){														$data['hero_image_id'] = 0;}
 		if(!isset($data['hero_image'])){														$data['hero_image'] = '';}
 		if(!isset($data['hero_external_link'])){												$data['hero_external_link'] = '';}
+		if(!isset($data['hero_content_align'])){												$data['hero_content_align'] = '';}
 		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){								$data['hero_fade'] = 'yes';}
 		if(!isset($data['hero_full_width_image']) || $data['hero_full_width_image'] == ''){		$data['hero_full_width_image'] = 'no';}
 
@@ -338,26 +339,51 @@ class mf_hero
 
 			if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 			{
-				if($data['hero_title'] == '')
+				$class .= ($class != '' ? " " : "")."has_image";
+
+				if($data['hero_content_align'] == 'ontop')
+				{
+					$class .= ($class != '' ? " " : "")."align_ontop";
+				}
+
+				else if($data['hero_content_align'] == 'left')
+				{
+					$class .= ($class != '' ? " " : "")."align_left";
+				}
+
+				else if($data['hero_title'] == '' || $data['hero_content_align'] == 'center')
 				{
 					$class .= ($class != '' ? " " : "")."align_center";
 				}
 
-				else
+				else if($data['hero_content_align'] == 'center')
 				{
 					$class .= ($class != '' ? " " : "")."align_right";
 				}
 			}
 
-			$out = str_replace(" hero", ($data['hero_fade'] == 'yes' ? " hero allow_bg_color" : " hero"), $data['before_widget'])
+			$out = str_replace(" hero", ($data['hero_fade'] == 'yes' || $data['hero_fade'] == 'solid' ? " hero allow_bg_color" : " hero"), $data['before_widget'])
 				."<div".($class != '' ? " class='".$class."'" : "").">";
 
 					if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 					{
-						$out .= "<div class='image".($data['hero_fade'] == 'yes' ? " image_fade" : "")."'>
+						$out .= "<div class='image";
+						
+							switch($data['hero_fade'])
+							{
+								case 'yes':
+									$out .= " image_fade";
+								break;
+
+								case 'solid':
+									$out .= " image_solid";
+								break;
+							}
+								
+						$out .= "'>
 							<div>"
 								.$a_start
-								.render_image_tag(array('id' => $data['hero_image_id'], 'src' => $data['hero_image']))
+									.render_image_tag(array('id' => $data['hero_image_id'], 'src' => $data['hero_image']))
 								.$a_end
 							."</div>
 						</div>";
@@ -365,20 +391,24 @@ class mf_hero
 
 					if($data['hero_title'] != '')
 					{
-						$out .= $data['before_title']
-							.($a_start != '' ? $a_start : "<span>")
-								.$data['hero_title']
-							.($a_end != '' ? $a_end : "</span>")
-						.$data['after_title'];
+						$out .= "<div class='content_container'>";
 
-						if($data['hero_content'] != '')
-						{
-							$out .= "<div class='content'>"
-								.$a_start
-									.apply_filters('the_content', $data['hero_content'])
-								.$a_end
-							."</div>";
-						}
+							$out .= $data['before_title']
+								.($a_start != '' ? $a_start : "<span>")
+									.$data['hero_title']
+								.($a_end != '' ? $a_end : "</span>")
+							.$data['after_title'];
+
+							if($data['hero_content'] != '')
+							{
+								$out .= "<div class='content'>"
+									.$a_start
+										.apply_filters('the_content', $data['hero_content'])
+									.$a_end
+								."</div>";
+							}
+
+						$out .= "</div>";
 					}
 
 				$out .= "</div>"
@@ -403,6 +433,7 @@ class widget_hero extends WP_Widget
 			'hero_content' => "",
 			'hero_link' => 0,
 			'hero_external_link' => "",
+			'hero_content_align' => "",
 			'hero_image' => "",
 			'hero_fade' => 'yes',
 		);
@@ -440,10 +471,32 @@ class widget_hero extends WP_Widget
 		$instance['hero_content'] = strip_tags($new_instance['hero_content']);
 		$instance['hero_link'] = sanitize_text_field($new_instance['hero_link']);
 		$instance['hero_external_link'] = esc_url_raw($new_instance['hero_external_link']);
+		$instance['hero_content_align'] = sanitize_text_field($new_instance['hero_content_align']);
 		$instance['hero_image'] = sanitize_text_field($new_instance['hero_image']);
 		$instance['hero_fade'] = sanitize_text_field($new_instance['hero_fade']);
 
 		return $instance;
+	}
+	
+	function get_content_align_for_select()
+	{
+		$arr_data = array();
+		$arr_data['left'] = __("Left", 'lang_hero');
+		$arr_data['center'] = __("Center", 'lang_hero');
+		$arr_data['right'] = __("Right", 'lang_hero');
+		$arr_data['ontop'] = __("Ontop", 'lang_hero');
+
+		return $arr_data;
+	}
+
+	function get_fade_for_select()
+	{
+		$arr_data = array();
+		$arr_data['yes'] = __("Fade", 'lang_hero');
+		$arr_data['no'] = __("No", 'lang_hero');
+		$arr_data['solid'] = __("Solid", 'lang_hero');
+
+		return $arr_data;
 	}
 
 	function form($instance)
@@ -467,8 +520,9 @@ class widget_hero extends WP_Widget
 				echo show_textfield(array('type' => 'url', 'name' => $this->get_field_name('hero_external_link'), 'value' => $instance['hero_external_link'], 'text' => __("External Link", 'lang_hero')));
 			}
 
-			echo get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
-			.show_select(array('data' => get_yes_no_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Fade to surrounding color", 'lang_hero'), 'value' => $instance['hero_fade']))
+			echo show_select(array('data' => $this->get_content_align_for_select(), 'name' => $this->get_field_name('hero_content_align'), 'text' => __("Align Content", 'lang_hero'), 'value' => $instance['hero_content_align']))
+			.get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
+			.show_select(array('data' => $this->get_fade_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Overlay Color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}
 }

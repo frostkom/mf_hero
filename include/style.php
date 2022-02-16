@@ -60,6 +60,20 @@ echo "@media all
 				display: block;
 				position: relative;
 			}
+			
+				.widget.hero .align_ontop .image
+				{
+					
+				}
+
+					.widget.hero .align_ontop .image + .content_container
+					{
+						left: 50%;
+						position: absolute;
+						top: 20%;
+						transform: translateX(-50%);
+						width: 60%;
+					}
 
 				.widget.hero .align_right .image, .widget.hero .align_left .image
 				{
@@ -127,11 +141,29 @@ echo "@media all
 						right: 0;
 						height: 20%;
 					}";
+
+					echo ".widget.hero .image.image_solid div img
+					{
+						-webkit-filter: grayscale(1);
+						filter: grayscale(1);
+					}
+					
+					.widget.hero .image.image_solid div:after
+					{
+						background-color: ".$setting_hero_bg_color.";
+						bottom: 0;
+						content: '';
+						left: 0;
+						opacity: .7;
+						position: absolute;
+						right: 0;
+						top: 0;
+					}";
 				}
 
 					echo ".widget.hero img
 					{
-						display: inline-block;
+						display: block;
 					}
 
 					.widget.hero h3, .widget.hero .content
