@@ -59,14 +59,11 @@ echo "@media all
 			{
 				display: block;
 				position: relative;
-			}
+			}";
 			
-				.widget.hero .align_ontop .image
-				{
-					
-				}
+				//echo ".widget.hero .align_ontop .image{}";
 
-					.widget.hero .align_ontop .image + .content_container
+					echo ".widget.hero .align_ontop .image + .content_container
 					{
 						left: 50%;
 						position: absolute;
@@ -140,12 +137,13 @@ echo "@media all
 						position: absolute;
 						right: 0;
 						height: 20%;
-					}";
+					}
 
-					echo ".widget.hero .image.image_solid div img
+					.widget.hero .image.image_solid div img
 					{
 						-webkit-filter: grayscale(1);
 						filter: grayscale(1);
+						width: 100%;
 					}
 					
 					.widget.hero .image.image_solid div:after
