@@ -368,7 +368,7 @@ class mf_hero
 					if($data['hero_image_id'] > 0 || $data['hero_image'] != '')
 					{
 						$out .= "<div class='image";
-						
+
 							switch($data['hero_fade'])
 							{
 								case 'yes':
@@ -379,7 +379,7 @@ class mf_hero
 									$out .= " image_solid";
 								break;
 							}
-								
+
 						$out .= "'>
 							<div>"
 								.$a_start
@@ -477,7 +477,7 @@ class widget_hero extends WP_Widget
 
 		return $instance;
 	}
-	
+
 	function get_content_align_for_select()
 	{
 		$arr_data = array();

@@ -55,22 +55,26 @@ echo "@media all
 				text-align: center;
 			}
 
+				.widget.hero .align_center img, .widget.hero .align_ontop img
+				{
+					/*margin: 0 auto;*/ /* Center... */
+					width: 100%; /* ...or fill */
+				}
+
 			.widget.hero .image
 			{
 				display: block;
 				position: relative;
-			}";
-			
-				//echo ".widget.hero .align_ontop .image{}";
+			}
 
-					echo ".widget.hero .align_ontop .image + .content_container
-					{
-						left: 50%;
-						position: absolute;
-						top: 20%;
-						transform: translateX(-50%);
-						width: 60%;
-					}
+				.widget.hero .align_ontop .image + .content_container
+				{
+					left: 50%;
+					position: absolute;
+					top: 20%;
+					transform: translateX(-50%);
+					width: 60%;
+				}
 
 				.widget.hero .align_right .image, .widget.hero .align_left .image
 				{
@@ -145,7 +149,7 @@ echo "@media all
 						filter: grayscale(1);
 						width: 100%;
 					}
-					
+
 					.widget.hero .image.image_solid div:after
 					{
 						background-color: ".$setting_hero_bg_color.";
