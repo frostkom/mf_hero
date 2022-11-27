@@ -64,7 +64,7 @@ class mf_hero
 
 					$obj_theme_core->get_params();
 
-					$website_max_width = isset($obj_theme_core->options['website_max_width']) ? $obj_theme_core->options['website_max_width'] : 2000;
+					$website_max_width = (isset($obj_theme_core->options['website_max_width']) ? $obj_theme_core->options['website_max_width'] : 2000);
 				}
 
 				else

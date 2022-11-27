@@ -2,11 +2,11 @@
 /*
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
-Description: 
-Version: 2.4.15
+Description:
+Version: 2.4.16
 Licence: GPLv2 or later
 Author: Martin Fors
-Author URI: https://frostkom.se
+Author URI: https://martinfors.se
 Text Domain: lang_hero
 Domain Path: /lang
 
