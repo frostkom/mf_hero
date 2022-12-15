@@ -449,7 +449,7 @@ class widget_hero extends WP_Widget
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$data = $instance;
-		$data['before_widget'] = $before_widget;
+		$data['before_widget'] = apply_filters('filter_before_widget', $before_widget);
 		$data['before_title'] = $before_title;
 		$data['after_title'] = $after_title;
 		$data['after_widget'] = $after_widget;
