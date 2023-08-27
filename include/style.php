@@ -200,9 +200,10 @@ echo "@media all
 							}
 
 						.widget.hero h3
-						{
-							font-size: 5em !important;
-							margin-top: 1.3em !important;
+						{"
+							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size', 'suffix' => ' !important'))
+							//."font-size: 5em !important;"
+							."margin-top: 1.3em !important;
 						}
 
 							.is_mobile .widget.hero h3
@@ -211,7 +212,8 @@ echo "@media all
 							}
 
 						.widget.hero .content p
-						{
-							padding-bottom: 1em;
-						}
+						{"
+							.$obj_theme_core->render_css(array('property' => 'padding', 'value' => 'hero_content_padding'))
+							//."padding-bottom: 1em;"
+						."}
 }";

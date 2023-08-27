@@ -277,6 +277,8 @@ class mf_hero
 	{
 		$options_params[] = array('category' => __("Hero", 'lang_hero'), 'id' => 'mf_hero');
 			$options_params[] = array('type' => 'color', 'id' => 'hero_bg_color', 'title' => __("Fade Color", 'lang_hero'), 'default' => get_option('setting_hero_bg_color'));
+			$options_params[] = array('type' => 'text', 'id' => 'hero_h3_size', 'title' => __("Heading Size", 'lang_theme_core'), 'default' => "5em");
+			$options_params[] = array('type' => 'text', 'id' => 'hero_content_padding', 'title' => __("Content Padding", 'lang_theme_core'), 'default' => "0 0 1em");
 		$options_params[] = array('category_end' => "");
 
 		return $options_params;
