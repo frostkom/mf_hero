@@ -430,14 +430,26 @@ class mf_hero
 
 class widget_hero extends WP_Widget
 {
+	var $widget_ops = array();
+
+	var $arr_default = array(
+		'hero_title' => "",
+		'hero_content' => "",
+		'hero_link' => 0,
+		'hero_external_link' => "",
+		'hero_content_align' => "",
+		'hero_image' => "",
+		'hero_fade' => 'yes',
+	);
+
 	function __construct()
 	{
 		$this->widget_ops = array(
 			'classname' => 'hero',
-			'description' => __("Display Hero", 'lang_hero')
+			'description' => __("Display Hero", 'lang_hero'),
 		);
 
-		$this->arr_default = array(
+		/*$this->arr_default = array(
 			'hero_title' => "",
 			'hero_content' => "",
 			'hero_link' => 0,
@@ -445,7 +457,7 @@ class widget_hero extends WP_Widget
 			'hero_content_align' => "",
 			'hero_image' => "",
 			'hero_fade' => 'yes',
-		);
+		);*/
 
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Hero", 'lang_hero'), $this->widget_ops);
 	}
