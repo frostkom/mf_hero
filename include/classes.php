@@ -311,6 +311,8 @@ class mf_hero
 
 	function get_widget($data)
 	{
+		global $post;
+
 		$out = $class = $a_start = $a_end = "";
 
 		if(!isset($data['hero_image_id'])){														$data['hero_image_id'] = 0;}
@@ -319,6 +321,11 @@ class mf_hero
 		if(!isset($data['hero_content_align'])){												$data['hero_content_align'] = '';}
 		if(!isset($data['hero_fade']) || $data['hero_fade'] == ''){								$data['hero_fade'] = 'yes';}
 		if(!isset($data['hero_full_width_image']) || $data['hero_full_width_image'] == ''){		$data['hero_full_width_image'] = 'no';}
+
+		if($data['hero_title'] != '')
+		{
+			$data['hero_title'] = str_replace("[h1]", $post->post_title, $data['hero_title']);
+		}
 
 		if($data['hero_title'] != '' || $data['hero_image_id'] > 0 || $data['hero_image'] != '')
 		{
