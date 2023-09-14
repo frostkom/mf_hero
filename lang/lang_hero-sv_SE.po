@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-15 09:27+0100\n"
+"POT-Creation-Date: 2023-09-08 11:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -60,17 +60,17 @@ msgstr "Om du är nöjd med resultatet, tryck på Spara och sen är du klar!"
 
 #: ../include/classes.php:144
 #: ../include/classes.php:278
-#: ../include/classes.php:435
+#: ../include/classes.php:465
 msgid "Hero"
 msgstr "Hero"
 
 #: ../include/classes.php:150
-#: ../include/classes.php:504
+#: ../include/classes.php:534
 msgid "Title"
 msgstr "Rubrik"
 
 #: ../include/classes.php:159
-#: ../include/classes.php:505
+#: ../include/classes.php:535
 msgid "Content"
 msgstr "Innehåll"
 
@@ -79,7 +79,7 @@ msgid "Page"
 msgstr "Sida"
 
 #: ../include/classes.php:173
-#: ../include/classes.php:514
+#: ../include/classes.php:544
 msgid "External Link"
 msgstr "Extern länk"
 
@@ -91,47 +91,64 @@ msgstr "Tona till omkringliggande färg"
 msgid "Fade Color"
 msgstr "Färg på toning"
 
-#: ../include/classes.php:422
+#: ../include/classes.php:280
+msgid "Heading Size"
+msgstr "Storlek på rubrik"
+
+#: ../include/classes.php:281
+#: ../include/classes.php:284
+msgid "Mobile"
+msgstr "Mobil"
+
+#: ../include/classes.php:282
+msgid "Content Padding"
+msgstr "Tomrum runt innehåll"
+
+#: ../include/classes.php:283
+msgid "Content Size"
+msgstr "Storlek på innehåll"
+
+#: ../include/classes.php:452
 msgid "Display Hero"
 msgstr "Visa Hero"
 
-#: ../include/classes.php:478
+#: ../include/classes.php:508
 msgid "Left"
 msgstr "Vänster"
 
-#: ../include/classes.php:479
+#: ../include/classes.php:509
 msgid "Center"
 msgstr "Centrera"
 
-#: ../include/classes.php:480
+#: ../include/classes.php:510
 msgid "Right"
 msgstr "Höger"
 
-#: ../include/classes.php:481
+#: ../include/classes.php:511
 msgid "Ontop"
 msgstr "Ovanpå"
 
-#: ../include/classes.php:489
+#: ../include/classes.php:519
 msgid "Fade"
 msgstr "Toning"
 
-#: ../include/classes.php:490
+#: ../include/classes.php:520
 msgid "No"
 msgstr "Nej"
 
-#: ../include/classes.php:491
+#: ../include/classes.php:521
 msgid "Solid"
 msgstr "Hel"
 
-#: ../include/classes.php:509
+#: ../include/classes.php:539
 msgid "Link"
 msgstr "Länk"
 
-#: ../include/classes.php:517
+#: ../include/classes.php:547
 msgid "Align Content"
 msgstr "Linjera innehåll"
 
-#: ../include/classes.php:519
+#: ../include/classes.php:549
 msgid "Overlay Color"
 msgstr "Färg ovanpå bild"
 
