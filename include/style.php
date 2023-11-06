@@ -71,8 +71,8 @@ echo "@media all
 				{
 					left: 50%;
 					position: absolute;
-					top: 20%;
-					transform: translateX(-50%);
+					top: 50%;
+					transform: translate(-50%, -50%);
 					width: 60%;
 				}
 
@@ -202,13 +202,13 @@ echo "@media all
 						.widget.hero h3
 						{"
 							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size', 'suffix' => ' !important'))
-							."margin-top: 1.3em !important;
-						}
+							.$obj_theme_core->render_css(array('property' => 'margin-top', 'value' => 'hero_h3_margin_top', 'suffix' => ' !important'))
+							//."margin-top: 1.3em !important;"
+						."}
 
 							.is_mobile .widget.hero h3
 							{"
 								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size_mobile', 'suffix' => ' !important'))
-								//."font-size: 3em !important;"
 							."}
 
 						.widget.hero .content p
@@ -220,5 +220,6 @@ echo "@media all
 							.is_mobile .widget.hero .content p
 							{"
 								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size_mobile', 'suffix' => ' !important'))
+								."margin-top: 2vw !important;"
 							."}
 }";
