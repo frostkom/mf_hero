@@ -1,0 +1,26 @@
+.wp-block/*.is-selected*/ .wp-block-mf-hero
+{
+	background: #fff8df;
+	border: 0 solid #ffdf7f;
+	border-left-width: .2em;
+	border-right-width: .2em;
+	overflow: hidden;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+	.wp-block .wp-block-mf-hero:first-of-type
+	{
+		border-top-width: .2em;
+		border-top-left-radius: .5em;
+		border-top-right-radius: .5em;
+		padding-top: 1em;
+	}
+
+	.wp-block .wp-block-mf-hero:last-of-type
+	{
+		border-bottom-width: .2em;
+		border-bottom-left-radius: .5em;
+		border-bottom-right-radius: .5em;
+		padding-bottom: 1em;
+	}

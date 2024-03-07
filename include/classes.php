@@ -2,26 +2,60 @@
 
 class mf_hero
 {
-	function __construct()
+	var $meta_prefix = 'mf_hero_';
+
+	function __construct(){}
+
+	function block_render_callback($attributes)
 	{
-		$this->meta_prefix = 'mf_hero_';
+		$attributes['before_widget'] = "<div class='widget hero'>";
+		$attributes['before_title'] = "<h3>";
+		$attributes['after_title'] = "</h3>";
+		$attributes['after_widget'] = "</div>";
+
+		return $this->get_widget($attributes);
 	}
 
-	function wp_head()
+	function get_content_align_for_select()
 	{
-		// Have to check if rwmb_meta_boxes is used aswell
-		/*if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'hero-widget') > 0)
-		{*/
-			$plugin_include_url = plugin_dir_url(__FILE__);
-			$plugin_version = get_plugin_version(__FILE__);
-
-			mf_enqueue_style('style_hero', $plugin_include_url."style.php", $plugin_version);
-		//}
+		return array(
+			'left' => __("Left", 'lang_hero'),
+			'center' => __("Center", 'lang_hero'),
+			'right' => __("Right", 'lang_hero'),
+			'ontop' => __("Ontop", 'lang_hero'),
+		);
 	}
 
-	function widgets_init()
+	function get_fade_for_select()
 	{
-		register_widget('widget_hero');
+		return array(
+			'yes' => __("Fade", 'lang_hero'),
+			'no' => __("No", 'lang_hero'),
+			'solid' => __("Solid", 'lang_hero'),
+		);
+	}
+
+	function init()
+	{
+		// Blocks
+		#######################
+		$plugin_include_url = plugin_dir_url(__FILE__);
+		$plugin_version = get_plugin_version(__FILE__);
+
+		$arr_data = array();
+		get_post_children(array('add_choose_here' => true), $arr_data);
+
+		wp_register_style('style_hero_block_wp', $plugin_include_url."block/style.css?v=".$plugin_version, $plugin_version);
+		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor'), $plugin_version);
+		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
+
+		register_block_type('mf/hero', array(
+			'editor_script' => 'script_hero_block_wp',
+			'editor_style' => 'style_hero_block_wp',
+			'render_callback' => array($this, 'block_render_callback'),
+			//'style' => 'style_hero_block_wp',
+		));
+		#######################
 	}
 
 	function get_gcd($a, $b)
@@ -42,8 +76,6 @@ class mf_hero
 
 		$out = '';
 
-		//$post_id = filter_input(INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT);
-		//$post_id = check_var('post', 'int');
 		$post_id = $post->ID;
 
 		if($post_id > 0)
@@ -202,6 +234,18 @@ class mf_hero
 		return $meta_boxes;
 	}
 
+	function wp_head()
+	{
+		// Have to check if rwmb_meta_boxes is used aswell
+		/*if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'hero-widget') > 0)
+		{*/
+			$plugin_include_url = plugin_dir_url(__FILE__);
+			$plugin_version = get_plugin_version(__FILE__);
+
+			mf_enqueue_style('style_hero', $plugin_include_url."style.php", $plugin_version);
+		//}
+	}
+
 	function is_active_sidebar($is_active, $widget)
 	{
 		global $wp_query;
@@ -333,7 +377,7 @@ class mf_hero
 
 		if($data['hero_title'] != '' || $data['hero_image_id'] > 0 || $data['hero_image'] != '')
 		{
-			if($data['hero_link'] > 0)
+			if(isset($data['hero_link']) && $data['hero_link'] > 0)
 			{
 				$a_start = "<a href='".get_permalink($data['hero_link'])."'>";
 				$a_end = "</a>";
@@ -412,7 +456,7 @@ class mf_hero
 								.($a_end != '' ? $a_end : "</span>")
 							.$data['after_title'];
 
-							if($data['hero_content'] != '')
+							if(isset($data['hero_content']) && $data['hero_content'] != '')
 							{
 								$out .= "<div class='content'>"
 									.$a_start
@@ -430,12 +474,16 @@ class mf_hero
 
 		return $out;
 	}
+
+	function widgets_init()
+	{
+		register_widget('widget_hero');
+	}
 }
 
 class widget_hero extends WP_Widget
 {
-	var $widget_ops = array();
-
+	var $widget_ops;
 	var $arr_default = array(
 		'hero_title' => "",
 		'hero_content' => "",
@@ -453,22 +501,17 @@ class widget_hero extends WP_Widget
 			'description' => __("Display Hero", 'lang_hero'),
 		);
 
-		/*$this->arr_default = array(
-			'hero_title' => "",
-			'hero_content' => "",
-			'hero_link' => 0,
-			'hero_external_link' => "",
-			'hero_content_align' => "",
-			'hero_image' => "",
-			'hero_fade' => 'yes',
-		);*/
-
 		parent::__construct(str_replace("_", "-", $this->widget_ops['classname']).'-widget', __("Hero", 'lang_hero'), $this->widget_ops);
 	}
 
 	function widget($args, $instance)
 	{
 		global $obj_hero;
+
+		if(!isset($obj_hero))
+		{
+			$obj_hero = new mf_hero();
+		}
 
 		extract($args);
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
@@ -478,11 +521,6 @@ class widget_hero extends WP_Widget
 		$data['before_title'] = $before_title;
 		$data['after_title'] = $after_title;
 		$data['after_widget'] = $after_widget;
-
-		if(!isset($obj_hero))
-		{
-			$obj_hero = new mf_hero();
-		}
 
 		echo $obj_hero->get_widget($data);
 	}
@@ -503,29 +541,15 @@ class widget_hero extends WP_Widget
 		return $instance;
 	}
 
-	function get_content_align_for_select()
-	{
-		$arr_data = array();
-		$arr_data['left'] = __("Left", 'lang_hero');
-		$arr_data['center'] = __("Center", 'lang_hero');
-		$arr_data['right'] = __("Right", 'lang_hero');
-		$arr_data['ontop'] = __("Ontop", 'lang_hero');
-
-		return $arr_data;
-	}
-
-	function get_fade_for_select()
-	{
-		$arr_data = array();
-		$arr_data['yes'] = __("Fade", 'lang_hero');
-		$arr_data['no'] = __("No", 'lang_hero');
-		$arr_data['solid'] = __("Solid", 'lang_hero');
-
-		return $arr_data;
-	}
-
 	function form($instance)
 	{
+		global $obj_hero;
+
+		if(!isset($obj_hero))
+		{
+			$obj_hero = new mf_hero();
+		}
+
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
 		$arr_data = array();
@@ -545,9 +569,9 @@ class widget_hero extends WP_Widget
 				echo show_textfield(array('type' => 'url', 'name' => $this->get_field_name('hero_external_link'), 'value' => $instance['hero_external_link'], 'text' => __("External Link", 'lang_hero')));
 			}
 
-			echo show_select(array('data' => $this->get_content_align_for_select(), 'name' => $this->get_field_name('hero_content_align'), 'text' => __("Align Content", 'lang_hero'), 'value' => $instance['hero_content_align']))
+			echo show_select(array('data' => $obj_hero->get_content_align_for_select(), 'name' => $this->get_field_name('hero_content_align'), 'text' => __("Align Content", 'lang_hero'), 'value' => $instance['hero_content_align']))
 			.get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
-			.show_select(array('data' => $this->get_fade_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Overlay Color", 'lang_hero'), 'value' => $instance['hero_fade']))
+			.show_select(array('data' => $obj_hero->get_fade_for_select(), 'name' => $this->get_field_name('hero_fade'), 'text' => __("Overlay Color", 'lang_hero'), 'value' => $instance['hero_fade']))
 		."</div>";
 	}
 }
