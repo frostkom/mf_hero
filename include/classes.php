@@ -8,7 +8,7 @@ class mf_hero
 
 	function block_render_callback($attributes)
 	{
-		$widget_id = "widget_hero_".md5(serialize($array));
+		$widget_id = "widget_hero_".md5(serialize($attributes));
 
 		$out = "";
 
@@ -430,6 +430,7 @@ class mf_hero
 
 		$out = $class = $a_start = $a_end = "";
 
+		if(!isset($data['hero_title'])){														$data['hero_title'] = '';}
 		if(!isset($data['hero_image_id'])){														$data['hero_image_id'] = 0;}
 		if(!isset($data['hero_image'])){														$data['hero_image'] = '';}
 		if(!isset($data['hero_external_link'])){												$data['hero_external_link'] = '';}
