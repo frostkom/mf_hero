@@ -8,12 +8,79 @@ class mf_hero
 
 	function block_render_callback($attributes)
 	{
-		$attributes['before_widget'] = "<div class='widget hero'>";
+		$widget_id = "widget_hero_".md5(serialize($array));
+
+		$out = "";
+
+		if(isset($attributes['style']) && is_array($attributes['style']))
+		{
+			$out_temp = "";
+
+			foreach($attributes['style'] as $key => $arr_value)
+			{
+				switch($key)
+				{
+					case 'color':
+						foreach($arr_value as $key_sub => $arr_value_sub)
+						{
+							switch($key_sub)
+							{
+								case 'background':
+									foreach($arr_value as $key_sub => $value_sub)
+									{
+										$out_temp .= "#".$widget_id.".widget.hero
+										{
+											background: ".$value_sub.";
+										}
+
+										#".$widget_id.".widget.hero .image.image_fade:before
+										{
+											background: linear-gradient(to right, ".$value_sub." 0, transparent 100%);
+										}
+
+										#".$widget_id.".widget.hero .image.image_fade:after
+										{
+											background: linear-gradient(to left, ".$value_sub." 0, transparent 100%);
+										}
+
+										#".$widget_id.".widget.hero .image.image_fade div:after
+										{
+											background: linear-gradient(to top, ".$value_sub." 0, transparent 100%);
+										}
+
+										#".$widget_id.".widget.hero .image.image_solid div:after
+										{
+											background-color: ".$value_sub.";
+										}";
+									}
+								break;
+
+								default:
+									do_log(__FUNCTION__.": Unhandled style named ".$key." -> ".$key_sub);
+								break;
+							}
+						}
+					break;
+
+					default:
+						do_log(__FUNCTION__.": Unhandled style named ".$key);
+					break;
+				}
+			}
+
+			if($out_temp != '')
+			{
+				$out .= "<style>".$out_temp."</style>";
+			}
+		}
+
+		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero'>";
 		$attributes['before_title'] = "<h3>";
 		$attributes['after_title'] = "</h3>";
 		$attributes['after_widget'] = "</div>";
+		$out .= $this->get_widget($attributes);
 
-		return $this->get_widget($attributes);
+		return $out;
 	}
 
 	function get_content_align_for_select()
@@ -45,7 +112,7 @@ class mf_hero
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
-		wp_register_style('style_hero_block_wp', $plugin_include_url."block/style.css?v=".$plugin_version, $plugin_version);
+		wp_register_style('style_hero_block_wp', $plugin_include_url."block/style_wp.css?v=".$plugin_version, $plugin_version);
 		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor'), $plugin_version);
 		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
 
@@ -419,7 +486,7 @@ class mf_hero
 				}
 			}
 
-			$out = str_replace(" hero", ($data['hero_fade'] == 'yes' || $data['hero_fade'] == 'solid' ? " hero allow_bg_color" : " hero"), $data['before_widget'])
+			$out = str_replace("widget hero", ($data['hero_fade'] == 'yes' || $data['hero_fade'] == 'solid' ? "widget hero allow_bg_color" : "widget hero"), $data['before_widget'])
 				."<div".($class != '' ? " class='".$class."'" : "").">";
 
 					if($data['hero_image_id'] > 0 || $data['hero_image'] != '')

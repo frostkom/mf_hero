@@ -23,7 +23,8 @@ if(isset($obj_theme_core->options['hero_bg_color']) && $obj_theme_core->options[
 
 else
 {
-	$setting_hero_bg_color = get_option('setting_hero_bg_color');
+	//$setting_hero_bg_color = get_option('setting_hero_bg_color');
+	$setting_hero_bg_color = "rgba(255, 255, 255, 0)";
 }
 
 echo "@media all
@@ -37,7 +38,7 @@ echo "@media all
 		}";
 	}
 
-		echo "#wrapper .widget.hero > div
+		echo "#wrapper .widget.hero > div, .wp-site-blocks .widget.hero > div
 		{
 			overflow: hidden;
 			padding-top: 0;
@@ -210,7 +211,6 @@ echo "@media all
 						{"
 							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size', 'suffix' => ' !important'))
 							.$obj_theme_core->render_css(array('property' => 'margin-top', 'value' => 'hero_h3_margin_top', 'suffix' => ' !important'))
-							//."margin-top: 1.3em !important;"
 						."}
 
 							.is_mobile .widget.hero h3
@@ -220,8 +220,8 @@ echo "@media all
 
 						.widget.hero .content p
 						{"
-							.$obj_theme_core->render_css(array('property' => 'padding', 'value' => 'hero_content_padding'))
 							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size', 'suffix' => ' !important'))
+							.$obj_theme_core->render_css(array('property' => 'padding', 'value' => 'hero_content_padding'))
 						."}
 
 							.is_mobile .widget.hero .content p

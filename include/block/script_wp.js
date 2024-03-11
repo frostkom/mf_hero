@@ -3,13 +3,16 @@
 	var __ = wp.i18n.__,
 		el = wp.element.createElement,
 		registerBlockType = wp.blocks.registerBlockType,
-		SelectControl = wp.components.SelectControl;
-		TextControl = wp.components.TextControl;
+		SelectControl = wp.components.SelectControl,
+		TextControl = wp.components.TextControl,
+		MediaUpload = wp.blockEditor.MediaUpload,
+	    Button = wp.components.Button,
+		MediaUploadCheck = wp.blockEditor.MediaUploadCheck;
 
 	registerBlockType('mf/hero',
 	{
 		title: __("Hero", 'lang_hero'),
-		description: __('Display a Hero', 'lang_hero'),
+		description: __("Display a Hero", 'lang_hero'),
 		icon: 'megaphone', /* https://developer.wordpress.org/resource/dashicons/ */
 		category: 'widgets', /* common, formatting, layout widgets, embed */
 		'attributes':
@@ -45,6 +48,11 @@
                 'default': ''
             },
 			'hero_image':
+			{
+                'type': 'string',
+                'default': ''
+            },
+			'hero_image_id':
 			{
                 'type': 'string',
                 'default': ''
@@ -88,10 +96,10 @@
 				el(
 					TextControl,
 					{
-						label: __('Title', 'lang_hero'),
+						label: __("Title", 'lang_hero'),
 						type: 'text',
 						value: props.attributes.hero_title,
-						/*help: __('Description...', 'lang_hero'),*/
+						/*help: __("Description...", 'lang_hero'),*/
 						onChange: function(value)
 						{
 							props.setAttributes({hero_title: value});
@@ -106,7 +114,7 @@
 				el(
 					TextControl,
 					{
-						label: __('Content', 'lang_hero'),
+						label: __("Content", 'lang_hero'),
 						type: 'text',
 						value: props.attributes.hero_content,
 						onChange: function(value)
@@ -135,7 +143,7 @@
 				el(
 					SelectControl,
 					{
-						label: __('Link', 'lang_hero'),
+						label: __("Link", 'lang_hero'),
 						value: props.attributes.hero_link,
 						options: arr_options,
 						onChange: function(value)
@@ -152,7 +160,7 @@
 				el(
 					TextControl,
 					{
-						label: __('External Link', 'lang_hero'),
+						label: __("External Link", 'lang_hero'),
 						type: 'text',
 						value: props.attributes.hero_external_link,
 						onChange: function(value)
@@ -181,7 +189,7 @@
 				el(
 					SelectControl,
 					{
-						label: __('Align Content', 'lang_hero'),
+						label: __("Align Content", 'lang_hero'),
 						value: props.attributes.hero_content_align,
 						options: arr_options,
 						onChange: function(value)
@@ -192,10 +200,42 @@
 				)
 			));
 
-			/*
-				'hero_image'
-				get_media_library(array('type' => 'image', 'name' => $this->get_field_name('hero_image'), 'value' => $instance['hero_image']))
-			*/
+			arr_out.push(el(
+				'div',
+				{className: props.className},
+				el(
+                    MediaUploadCheck,
+                    {},
+                    el(
+                        MediaUpload,
+                        {
+                            onSelect: function(value)
+							{
+								props.setAttributes({hero_image: value.url, hero_image_id: value.id});
+							},
+                            allowedTypes: ['image'],
+                            value: props.attributes.hero_image_id,
+                            render: function(obj)
+							{
+                                return el(
+                                    Button,
+                                    {
+                                        onClick: obj.open
+                                    },
+                                    __("Image", 'lang_hero')
+                                );
+                            }
+                        }
+                    )
+                ),
+                props.attributes.hero_image && el(
+                    'img',
+                    {
+                        src: props.attributes.hero_image,
+                        alt: ''
+                    }
+                )
+			));
 
 			var arr_options = [];
 
@@ -215,7 +255,7 @@
 				el(
 					SelectControl,
 					{
-						label: __('Overlay Color', 'lang_hero'),
+						label: __("Overlay Color", 'lang_hero'),
 						value: props.attributes.hero_fade,
 						options: arr_options,
 						onChange: function(value)

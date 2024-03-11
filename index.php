@@ -20,11 +20,13 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 
 	$obj_hero = new mf_hero();
 
+	add_action('cron_base', 'activate_hero', mt_rand(1, 10));
+
 	add_action('init', array($obj_hero, 'init'));
 
 	if(is_admin())
 	{
-		register_uninstall_hook(__FILE__, 'uninstall_hero');
+		register_activation_hook(__FILE__, 'activate_hero');
 
 		add_action('rwmb_meta_boxes', array($obj_hero, 'rwmb_meta_boxes'));
 	}
@@ -46,10 +48,7 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	function activate_hero()
 	{
 		require_plugin("meta-box/meta-box.php", "Meta Box");
-	}
-
-	function uninstall_hero()
-	{
+		
 		mf_uninstall_plugin(array(
 			'options' => array('setting_hero_bg_color', 'setting_hero_text_color'),
 		));
