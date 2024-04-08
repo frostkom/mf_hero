@@ -109,11 +109,12 @@ class mf_hero
 		$plugin_include_url = plugin_dir_url(__FILE__);
 		$plugin_version = get_plugin_version(__FILE__);
 
+		wp_register_style('style_hero_block_wp', $plugin_include_url."block/style_wp.css?v=".$plugin_version, $plugin_version);
+		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor'), $plugin_version);
+
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
-		wp_register_style('style_hero_block_wp', $plugin_include_url."block/style_wp.css?v=".$plugin_version, $plugin_version);
-		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor'), $plugin_version);
 		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
 
 		register_block_type('mf/hero', array(

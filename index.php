@@ -48,7 +48,7 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	function activate_hero()
 	{
 		require_plugin("meta-box/meta-box.php", "Meta Box");
-		
+
 		mf_uninstall_plugin(array(
 			'options' => array('setting_hero_bg_color', 'setting_hero_text_color'),
 		));

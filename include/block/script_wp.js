@@ -14,7 +14,7 @@
 		title: __("Hero", 'lang_hero'),
 		description: __("Display a Hero", 'lang_hero'),
 		icon: 'megaphone', /* https://developer.wordpress.org/resource/dashicons/ */
-		category: 'widgets', /* common, formatting, layout widgets, embed */
+		category: 'widgets', /* common, formatting, layout, widgets, embed */
 		'attributes':
 		{
 			'align':
