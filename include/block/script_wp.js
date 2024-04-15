@@ -20,7 +20,7 @@
 			'align':
 			{
 				'type': 'string',
-				'default': 'right'
+				'default': ''
 			},
 			'hero_title':
 			{
@@ -92,7 +92,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					TextControl,
 					{
@@ -110,7 +110,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					TextControl,
 					{
@@ -139,7 +139,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					SelectControl,
 					{
@@ -156,7 +156,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					TextControl,
 					{
@@ -185,7 +185,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					SelectControl,
 					{
@@ -202,7 +202,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
                     MediaUploadCheck,
                     {},
@@ -251,7 +251,7 @@
 
 			arr_out.push(el(
 				'div',
-				{className: props.className},
+				{className: "wp_mf_block " + props.className},
 				el(
 					SelectControl,
 					{
