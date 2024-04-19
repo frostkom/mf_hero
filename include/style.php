@@ -43,15 +43,15 @@ echo "@media all
 			overflow: hidden;
 			padding-top: 0;
 			padding-bottom: 0;
-		}
+		}";
 
-			.widget.hero .has_text
+			/*.widget.hero .has_text
 			{
 				padding-right: 2em;
 				padding-left: 2em;
-			}
+			}*/
 
-			.widget.hero .align_center
+			echo ".widget.hero .align_center
 			{
 				text-align: center;
 			}

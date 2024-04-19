@@ -74,7 +74,7 @@ class mf_hero
 			}
 		}
 
-		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero'>";
+		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "")."'>";
 		$attributes['before_title'] = "<h3>";
 		$attributes['after_title'] = "</h3>";
 		$attributes['after_widget'] = "</div>";
@@ -114,7 +114,7 @@ class mf_hero
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
-		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
+		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('yes_no' => get_yes_no_for_select(), 'hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
 
 		register_block_type('mf/hero', array(
 			'editor_script' => 'script_hero_block_wp',

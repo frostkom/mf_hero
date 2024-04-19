@@ -22,6 +22,11 @@
 				'type': 'string',
 				'default': ''
 			},
+			'full_width':
+			{
+                'type': 'string',
+                'default': ''
+            },
 			'hero_title':
 			{
                 'type': 'string',
@@ -90,6 +95,40 @@
 		{
 			var arr_out = [];
 
+			/* Select */
+			/* ################### */
+			var arr_options = [];
+
+			jQuery.each(script_hero_block_wp.yes_no, function(index, value)
+			{
+				if(index == "")
+				{
+					index = 0;
+				}
+
+				arr_options.push({label: value, value: index});
+			});
+
+			arr_out.push(el(
+				'div',
+				{className: "wp_mf_block " + props.className},
+				el(
+					SelectControl,
+					{
+						label: __("Full Width", 'lang_hero'),
+						value: props.attributes.full_width,
+						options: arr_options,
+						onChange: function(value)
+						{
+							props.setAttributes({full_width: value});
+						}
+					}
+				)
+			));
+			/* ################### */
+			
+			/* Text */
+			/* ################### */
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -107,7 +146,10 @@
 					}
 				)
 			));
+			/* ################### */
 
+			/* Text */
+			/* ################### */
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -124,7 +166,10 @@
 					}
 				)
 			));
+			/* ################### */
 
+			/* Select */
+			/* ################### */
 			var arr_options = [];
 
 			jQuery.each(script_hero_block_wp.hero_link, function(index, value)
@@ -153,7 +198,10 @@
 					}
 				)
 			));
+			/* ################### */
 
+			/* Text */
+			/* ################### */
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -170,7 +218,10 @@
 					}
 				)
 			));
+			/* ################### */
 
+			/* Select */
+			/* ################### */
 			var arr_options = [];
 
 			jQuery.each(script_hero_block_wp.hero_content_align, function(index, value)
@@ -199,7 +250,10 @@
 					}
 				)
 			));
+			/* ################### */
 
+			/* Media */
+			/* ################### */
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -236,7 +290,10 @@
                     }
                 )
 			));
+			/* ################### */
 
+			/* Select */
+			/* ################### */
 			var arr_options = [];
 
 			jQuery.each(script_hero_block_wp.hero_fade, function(index, value)
@@ -265,6 +322,7 @@
 					}
 				)
 			));
+			/* ################### */
 
 			return arr_out;
 		},
