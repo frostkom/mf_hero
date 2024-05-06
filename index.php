@@ -28,6 +28,8 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	{
 		register_activation_hook(__FILE__, 'activate_hero');
 
+		add_filter('display_post_states', array($obj_hero, 'display_post_states'), 10, 2);
+
 		add_action('rwmb_meta_boxes', array($obj_hero, 'rwmb_meta_boxes'));
 	}
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 11:04+0100\n"
+"POT-Creation-Date: 2024-05-06 14:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Fors\n"
 "Language-Team: \n"
@@ -15,140 +15,149 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../include/classes.php:98
+#: ../include/classes.php:89
+msgid "Left"
+msgstr "Vänster"
+
+#: ../include/classes.php:90
+msgid "Center"
+msgstr "Centrera"
+
+#: ../include/classes.php:91
+msgid "Right"
+msgstr "Höger"
+
+#: ../include/classes.php:92
+msgid "Ontop"
+msgstr "Ovanpå"
+
+#: ../include/classes.php:99
+msgid "Fade"
+msgstr "Toning"
+
+#: ../include/classes.php:100
+msgid "No"
+msgstr "Nej"
+
+#: ../include/classes.php:101
+msgid "Solid"
+msgstr "Hel"
+
+#: ../include/classes.php:197
 msgid "The image does not seam to exist anymore"
 msgstr "Bilden verkar inte finnas kvar längre"
 
-#: ../include/classes.php:103
+#: ../include/classes.php:202
 #, php-format
 msgid "The image should be at least %d px in width to fill the width of the container. It is now only %d px wide so I would urge you to upload a larger image"
 msgstr "Bilden borde åtminstone vara %d px bred för att fylla ut området runtom. Den är nu endast %d px bred så jag skulle rekommendera dig att ladda upp en större bild"
 
-#: ../include/classes.php:111
+#: ../include/classes.php:210
 #, php-format
 msgid "The image should have a ratio close to %s to better fill the container. It now has %s but you can change it by going through the list below."
 msgstr "Bilden borde ha ett förhållande nära %s för att bättre fylla ut området runtom. Den är nu %s men du kan ändra detta genom att gå igenom listan nedan."
 
-#: ../include/classes.php:113
+#: ../include/classes.php:212
 msgid "Press Edit next to the thumbnail above"
 msgstr "Tryck på Edit bredvid miniatyren här ovanför"
 
-#: ../include/classes.php:114
+#: ../include/classes.php:213
 msgid "Press Edit image right below the image"
 msgstr "Tryck Redigera bild under bilden"
 
-#: ../include/classes.php:115
+#: ../include/classes.php:214
 msgid "Make a selection on top of the image"
 msgstr "Gör en markering ovanpå bilden"
 
-#: ../include/classes.php:116
+#: ../include/classes.php:215
 #, php-format
 msgid "Add %s in Aspect Ratio in the right column"
 msgstr "Lägg in %s i Bildfröhållande i den högra kolumnen"
 
-#: ../include/classes.php:117
+#: ../include/classes.php:216
 msgid "You might have to do #3 and #4 a few times until you are happy with the selection"
 msgstr "Du kan behöva göra #3 och #4 ett par gånger innan du är nöjd med markeringen"
 
-#: ../include/classes.php:118
+#: ../include/classes.php:217
 msgid "Press the crop tool to the left above the image"
 msgstr "Tryck på beskärningsverktyget till vänster ovanför bilden"
 
-#: ../include/classes.php:119
+#: ../include/classes.php:218
 msgid "If you are happy with the result, press Save and you are done!"
 msgstr "Om du är nöjd med resultatet, tryck på Spara och sen är du klar!"
 
-#: ../include/classes.php:144
-#: ../include/classes.php:278
-#: ../include/classes.php:465
+#: ../include/classes.php:243
+#, php-format
+msgid "Link from %s"
+msgstr "Länk från %s"
+
+#: ../include/classes.php:264
+#: ../include/classes.php:410
+#: ../include/classes.php:593
 msgid "Hero"
 msgstr "Hero"
 
-#: ../include/classes.php:150
-#: ../include/classes.php:534
+#: ../include/classes.php:270
+#: ../include/classes.php:648
 msgid "Title"
 msgstr "Rubrik"
 
-#: ../include/classes.php:159
-#: ../include/classes.php:535
+#: ../include/classes.php:279
+#: ../include/classes.php:649
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../include/classes.php:164
+#: ../include/classes.php:284
 msgid "Page"
 msgstr "Sida"
 
-#: ../include/classes.php:173
-#: ../include/classes.php:544
+#: ../include/classes.php:293
+#: ../include/classes.php:658
 msgid "External Link"
 msgstr "Extern länk"
 
-#: ../include/classes.php:193
+#: ../include/classes.php:313
 msgid "Fade to surrounding color"
 msgstr "Tona till omkringliggande färg"
 
-#: ../include/classes.php:279
+#: ../include/classes.php:411
 msgid "Fade Color"
 msgstr "Färg på toning"
 
-#: ../include/classes.php:280
+#: ../include/classes.php:412
 msgid "Heading Size"
 msgstr "Storlek på rubrik"
 
-#: ../include/classes.php:281
-#: ../include/classes.php:284
+#: ../include/classes.php:413
+#: ../include/classes.php:417
 msgid "Mobile"
 msgstr "Mobil"
 
-#: ../include/classes.php:282
+#: ../include/classes.php:414
+msgid "Heading Top Margin"
+msgstr "Marginal ovanför rubrik"
+
+#: ../include/classes.php:415
 msgid "Content Padding"
 msgstr "Tomrum runt innehåll"
 
-#: ../include/classes.php:283
+#: ../include/classes.php:416
 msgid "Content Size"
 msgstr "Storlek på innehåll"
 
-#: ../include/classes.php:452
+#: ../include/classes.php:590
 msgid "Display Hero"
 msgstr "Visa Hero"
 
-#: ../include/classes.php:508
-msgid "Left"
-msgstr "Vänster"
-
-#: ../include/classes.php:509
-msgid "Center"
-msgstr "Centrera"
-
-#: ../include/classes.php:510
-msgid "Right"
-msgstr "Höger"
-
-#: ../include/classes.php:511
-msgid "Ontop"
-msgstr "Ovanpå"
-
-#: ../include/classes.php:519
-msgid "Fade"
-msgstr "Toning"
-
-#: ../include/classes.php:520
-msgid "No"
-msgstr "Nej"
-
-#: ../include/classes.php:521
-msgid "Solid"
-msgstr "Hel"
-
-#: ../include/classes.php:539
+#: ../include/classes.php:653
 msgid "Link"
 msgstr "Länk"
 
-#: ../include/classes.php:547
+#: ../include/classes.php:661
 msgid "Align Content"
 msgstr "Linjera innehåll"
 
-#: ../include/classes.php:549
+#: ../include/classes.php:663
 msgid "Overlay Color"
 msgstr "Färg ovanpå bild"
 
