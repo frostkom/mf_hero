@@ -74,7 +74,7 @@ class mf_hero
 			}
 		}
 
-		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "")."'>";
+		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "").(isset($attributes['className']) && $attributes['className'] != '' ? " ".$attributes['className'] : "")."'>";
 		$attributes['before_title'] = "<h3>";
 		$attributes['after_title'] = "</h3>";
 		$attributes['after_widget'] = "</div>";
@@ -425,7 +425,7 @@ class mf_hero
 		global $wpdb;
 
 		$result = $wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_status = %s AND meta_key = %s AND meta_value = %s", 'publish', $this->meta_prefix.'image', $arr_used['id']));
-		
+
 		$rows = $wpdb->num_rows;
 
 		if($rows > 0)
