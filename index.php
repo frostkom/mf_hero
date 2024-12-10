@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description:
-Version: 2.5.12
+Version: 2.5.13
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
@@ -48,8 +48,6 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	{
 		add_action('widgets_init', array($obj_hero, 'widgets_init'));
 	}
-
-	load_plugin_textdomain('lang_hero', false, dirname(plugin_basename(__FILE__))."/lang/");
 
 	function activate_hero()
 	{
