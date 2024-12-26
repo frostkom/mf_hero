@@ -101,18 +101,6 @@
 
 			/* Select */
 			/* ################### */
-			var arr_options = [];
-
-			jQuery.each(script_hero_block_wp.yes_no, function(index, value)
-			{
-				if(index == "")
-				{
-					index = 0;
-				}
-
-				arr_options.push({label: value, value: index});
-			});
-
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -121,7 +109,7 @@
 					{
 						label: __("Full Width", 'lang_hero'),
 						value: props.attributes.full_width,
-						options: arr_options,
+						options: convert_php_array_to_block_js(script_hero_block_wp.yes_no),
 						onChange: function(value)
 						{
 							props.setAttributes({full_width: value});
@@ -174,18 +162,6 @@
 
 			/* Select */
 			/* ################### */
-			var arr_options = [];
-
-			jQuery.each(script_hero_block_wp.hero_link, function(index, value)
-			{
-				if(index == "")
-				{
-					index = 0;
-				}
-
-				arr_options.push({label: value, value: index});
-			});
-
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -194,7 +170,7 @@
 					{
 						label: __("Link", 'lang_hero'),
 						value: props.attributes.hero_link,
-						options: arr_options,
+						options: convert_php_array_to_block_js(script_hero_block_wp.hero_link),
 						onChange: function(value)
 						{
 							props.setAttributes({hero_link: value});
@@ -226,18 +202,6 @@
 
 			/* Select */
 			/* ################### */
-			var arr_options = [];
-
-			jQuery.each(script_hero_block_wp.hero_content_align, function(index, value)
-			{
-				if(index == "")
-				{
-					index = 0;
-				}
-
-				arr_options.push({label: value, value: index});
-			});
-
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -246,7 +210,7 @@
 					{
 						label: __("Align Content", 'lang_hero'),
 						value: props.attributes.hero_content_align,
-						options: arr_options,
+						options: convert_php_array_to_block_js(script_hero_block_wp.hero_content_align),
 						onChange: function(value)
 						{
 							props.setAttributes({hero_content_align: value});
@@ -298,18 +262,6 @@
 
 			/* Select */
 			/* ################### */
-			var arr_options = [];
-
-			jQuery.each(script_hero_block_wp.hero_fade, function(index, value)
-			{
-				if(index == "")
-				{
-					index = 0;
-				}
-
-				arr_options.push({label: value, value: index});
-			});
-
 			arr_out.push(el(
 				'div',
 				{className: "wp_mf_block " + props.className},
@@ -318,7 +270,7 @@
 					{
 						label: __("Overlay Color", 'lang_hero'),
 						value: props.attributes.hero_fade,
-						options: arr_options,
+						options: convert_php_array_to_block_js(script_hero_block_wp.hero_fade),
 						onChange: function(value)
 						{
 							props.setAttributes({hero_fade: value});
