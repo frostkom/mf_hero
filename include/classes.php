@@ -111,12 +111,27 @@ class mf_hero
 		$plugin_include_url = plugin_dir_url(__FILE__);
 		$plugin_version = get_plugin_version(__FILE__);
 
-		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor'), $plugin_version);
+		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version);
 
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
-		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array('yes_no' => get_yes_no_for_select(), 'hero_link' => $arr_data, 'hero_content_align' => $this->get_content_align_for_select(), 'hero_fade' => $this->get_fade_for_select()));
+		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array(
+			'block_title' => __("Hero", 'lang_hero'),
+			'block_description' => __("Display a Hero", 'lang_hero'),
+			'full_width_label' => __("Full Width", 'lang_hero'),
+			'yes_no_for_select' => get_yes_no_for_select(),
+			'hero_title_label' => __("Title", 'lang_hero'),
+			'hero_content_label' => __("Content", 'lang_hero'),
+			'hero_link_label' => __("Link", 'lang_hero'),
+			'hero_link' => $arr_data,
+			'hero_external_link_label' => __("External Link", 'lang_hero'),
+			'hero_content_align_label' => __("Align Content", 'lang_hero'),
+			'hero_content_align' => $this->get_content_align_for_select(),
+			'hero_fade_label' => __("Overlay Color", 'lang_hero'),
+			'hero_fade' => $this->get_fade_for_select(),
+			'hero_image_label' => __("Image", 'lang_hero'),
+		));
 
 		register_block_type('mf/hero', array(
 			'editor_script' => 'script_hero_block_wp',

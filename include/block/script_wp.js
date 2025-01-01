@@ -1,7 +1,6 @@
 (function()
 {
-	var __ = wp.i18n.__,
-		el = wp.element.createElement,
+	var el = wp.element.createElement,
 		registerBlockType = wp.blocks.registerBlockType,
 		SelectControl = wp.components.SelectControl,
 		TextControl = wp.components.TextControl,
@@ -11,8 +10,8 @@
 
 	registerBlockType('mf/hero',
 	{
-		title: __("Hero", 'lang_hero'),
-		description: __("Display a Hero", 'lang_hero'),
+		title: script_hero_block_wp.block_title,
+		description: script_hero_block_wp.block_description,
 		icon: 'megaphone',
 		category: 'widgets',
 		'attributes':
@@ -97,188 +96,141 @@
 		},
 		edit: function(props)
 		{
-			var arr_out = [];
-
-			/* Select */
-			/* ################### */
-			arr_out.push(el(
+			return el(
 				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					SelectControl,
-					{
-						label: __("Full Width", 'lang_hero'),
-						value: props.attributes.full_width,
-						options: convert_php_array_to_block_js(script_hero_block_wp.yes_no),
-						onChange: function(value)
-						{
-							props.setAttributes({full_width: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Text */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					TextControl,
-					{
-						label: __("Title", 'lang_hero'),
-						type: 'text',
-						value: props.attributes.hero_title,
-						/*help: __("Description...", 'lang_hero'),*/
-						onChange: function(value)
-						{
-							props.setAttributes({hero_title: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Text */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					TextControl,
-					{
-						label: __("Content", 'lang_hero'),
-						type: 'text',
-						value: props.attributes.hero_content,
-						onChange: function(value)
-						{
-							props.setAttributes({hero_content: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Select */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					SelectControl,
-					{
-						label: __("Link", 'lang_hero'),
-						value: props.attributes.hero_link,
-						options: convert_php_array_to_block_js(script_hero_block_wp.hero_link),
-						onChange: function(value)
-						{
-							props.setAttributes({hero_link: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Text */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					TextControl,
-					{
-						label: __("External Link", 'lang_hero'),
-						type: 'text',
-						value: props.attributes.hero_external_link,
-						onChange: function(value)
-						{
-							props.setAttributes({hero_external_link: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Select */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					SelectControl,
-					{
-						label: __("Align Content", 'lang_hero'),
-						value: props.attributes.hero_content_align,
-						options: convert_php_array_to_block_js(script_hero_block_wp.hero_content_align),
-						onChange: function(value)
-						{
-							props.setAttributes({hero_content_align: value});
-						}
-					}
-				)
-			));
-			/* ################### */
-
-			/* Media */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-                    MediaUploadCheck,
-                    {},
-                    el(
-                        MediaUpload,
-                        {
-                            onSelect: function(value)
+				{className: 'wp_mf_block_container'},
+				[
+					el(
+						InspectorControls,
+						'div',
+						el(
+							SelectControl,
 							{
-								props.setAttributes({hero_image: value.url, hero_image_id: value.id});
-							},
-                            allowedTypes: ['image'],
-                            value: props.attributes.hero_image_id,
-                            render: function(obj)
+								label: script_hero_block_wp.full_width_label,
+								value: props.attributes.full_width,
+								options: convert_php_array_to_block_js(script_hero_block_wp.yes_no_for_select),
+								onChange: function(value)
+								{
+									props.setAttributes({full_width: value});
+								}
+							}
+						),
+						el(
+							TextControl,
 							{
-                                return el(
-                                    Button,
-                                    {
-                                        onClick: obj.open
-                                    },
-                                    __("Image", 'lang_hero')
-                                );
-                            }
-                        }
-                    )
-                ),
-                props.attributes.hero_image && el(
-                    'img',
-                    {
-                        src: props.attributes.hero_image,
-                        alt: ''
-                    }
-                )
-			));
-			/* ################### */
-
-			/* Select */
-			/* ################### */
-			arr_out.push(el(
-				'div',
-				{className: "wp_mf_block " + props.className},
-				el(
-					SelectControl,
-					{
-						label: __("Overlay Color", 'lang_hero'),
-						value: props.attributes.hero_fade,
-						options: convert_php_array_to_block_js(script_hero_block_wp.hero_fade),
-						onChange: function(value)
-						{
-							props.setAttributes({hero_fade: value});
-						}
-					}
-				)
-			));
-			/* ################### */
+								label: script_hero_block_wp.hero_title_label,
+								type: 'text',
+								value: props.attributes.hero_title,
+								onChange: function(value)
+								{
+									props.setAttributes({hero_title: value});
+								}
+							}
+						),
+						el(
+							TextControl,
+							{
+								label: script_hero_block_wp.hero_content_label,
+								type: 'text',
+								value: props.attributes.hero_content,
+								onChange: function(value)
+								{
+									props.setAttributes({hero_content: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_hero_block_wp.hero_link_label,
+								value: props.attributes.hero_link,
+								options: convert_php_array_to_block_js(script_hero_block_wp.hero_link),
+								onChange: function(value)
+								{
+									props.setAttributes({hero_link: value});
+								}
+							}
+						),
+						el(
+							TextControl,
+							{
+								label: script_hero_block_wp.hero_external_link_label,
+								type: 'text',
+								value: props.attributes.hero_external_link,
+								onChange: function(value)
+								{
+									props.setAttributes({hero_external_link: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_hero_block_wp.hero_content_align_label,
+								value: props.attributes.hero_content_align,
+								options: convert_php_array_to_block_js(script_hero_block_wp.hero_content_align),
+								onChange: function(value)
+								{
+									props.setAttributes({hero_content_align: value});
+								}
+							}
+						),
+						el(
+							SelectControl,
+							{
+								label: script_hero_block_wp.hero_fade_label,
+								value: props.attributes.hero_fade,
+								options: convert_php_array_to_block_js(script_hero_block_wp.hero_fade),
+								onChange: function(value)
+								{
+									props.setAttributes({hero_fade: value});
+								}
+							}
+						)
+					),
+					el(
+						'strong',
+						{className: props.className},
+						script_hero_block_wp.block_title
+					),
+					el(
+						'div',
+						{className: "wp_mf_block " + props.className},
+						el(
+							MediaUploadCheck,
+							{},
+							el(
+								MediaUpload,
+								{
+									onSelect: function(value)
+									{
+										props.setAttributes({hero_image: value.url, hero_image_id: value.id});
+									},
+									allowedTypes: ['image'],
+									value: props.attributes.hero_image_id,
+									render: function(obj)
+									{
+										return el(
+											Button,
+											{
+												onClick: obj.open
+											},
+											script_hero_block_wp.hero_image_label
+										);
+									}
+								}
+							)
+						),
+						props.attributes.hero_image && el(
+							'img',
+							{
+								src: props.attributes.hero_image,
+								alt: ''
+							}
+						)
+					)
+				]
+			);
 
 			return arr_out;
 		},
