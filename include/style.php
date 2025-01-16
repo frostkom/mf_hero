@@ -146,7 +146,6 @@ echo "@media all
 
 					.widget.hero .image.image_solid div img
 					{
-						-webkit-filter: grayscale(1);
 						filter: grayscale(1);
 						width: 100%;
 					}
@@ -172,7 +171,6 @@ echo "@media all
 
 						.widget.hero:hover .image img
 						{
-							-webkit-transform: scale(1.05);
 							transform: scale(1.05);
 						}
 
