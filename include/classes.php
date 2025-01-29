@@ -144,7 +144,7 @@ class mf_hero
 
 	function get_gcd($a, $b)
 	{
-		return ($a % $b) ? $this->get_gcd($b, $a % $b) : $b;
+		return (($a % $b) ? $this->get_gcd($b, $a % $b) : $b);
 	}
 
 	function get_ratio($x, $y)
@@ -345,9 +345,8 @@ class mf_hero
 		/*if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'hero-widget') > 0)
 		{*/
 			$plugin_include_url = plugin_dir_url(__FILE__);
-			$plugin_version = get_plugin_version(__FILE__);
 
-			mf_enqueue_style('style_hero', $plugin_include_url."style.php", $plugin_version);
+			mf_enqueue_style('style_hero', $plugin_include_url."style.php");
 		//}
 	}
 
