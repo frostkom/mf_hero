@@ -111,7 +111,7 @@ class mf_hero
 		$plugin_include_url = plugin_dir_url(__FILE__);
 		$plugin_version = get_plugin_version(__FILE__);
 
-		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version);
+		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version, true);
 
 		$arr_data = array();
 		get_post_children(array('add_choose_here' => true), $arr_data);
