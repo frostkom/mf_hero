@@ -273,7 +273,7 @@ class mf_hero
 		{
 			foreach($result as $r)
 			{
-				do_log("Hero exists in ".get_post_title($r->ID)." (".get_permalink($r->ID)."). Please convert to widgets");
+				do_log("Hero exists in ".get_the_title($r->ID)." (".get_permalink($r->ID)."). Please convert to widgets");
 			}
 
 			$meta_boxes[] = array(
@@ -341,13 +341,9 @@ class mf_hero
 
 	function wp_head()
 	{
-		// Have to check if rwmb_meta_boxes is used aswell
-		/*if(!is_plugin_active("mf_widget_logic_select/index.php") || apply_filters('get_widget_search', 'hero-widget') > 0)
-		{*/
-			$plugin_include_url = plugin_dir_url(__FILE__);
+		$plugin_include_url = plugin_dir_url(__FILE__);
 
-			mf_enqueue_style('style_hero', $plugin_include_url."style.php");
-		//}
+		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
 	}
 
 	function is_active_sidebar($is_active, $widget)
