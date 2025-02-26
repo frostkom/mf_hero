@@ -8,10 +8,10 @@ class mf_hero
 
 	function block_render_callback($attributes)
 	{
-		$widget_id = "widget_hero_".md5(serialize($attributes));
-
 		$out = "";
 
+		/*$widget_id = "widget_hero_".md5(serialize($attributes));
+		
 		if(isset($attributes['style']) && is_array($attributes['style']))
 		{
 			$out_temp = "";
@@ -74,7 +74,9 @@ class mf_hero
 			}
 		}
 
-		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "").(isset($attributes['className']) && $attributes['className'] != '' ? " ".$attributes['className'] : "")."'>";
+		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "").(isset($attributes['className']) && $attributes['className'] != '' ? " ".$attributes['className'] : "")."'>";*/
+
+		$attributes['before_widget'] = "<div".parse_block_attributes(array('class' => "widget hero", 'attributes' => $attributes)).">";
 		$attributes['before_title'] = "<h3>";
 		$attributes['after_title'] = "</h3>";
 		$attributes['after_widget'] = "</div>";
@@ -119,8 +121,6 @@ class mf_hero
 		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array(
 			'block_title' => __("Hero", 'lang_hero'),
 			'block_description' => __("Display a Hero", 'lang_hero'),
-			'full_width_label' => __("Full Width", 'lang_hero'),
-			'yes_no_for_select' => get_yes_no_for_select(),
 			'hero_title_label' => __("Title", 'lang_hero'),
 			'hero_content_label' => __("Content", 'lang_hero'),
 			'hero_link_label' => __("Link", 'lang_hero'),

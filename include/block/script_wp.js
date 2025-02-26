@@ -22,11 +22,6 @@
 				'type': 'string',
 				'default': ''
 			},
-			'full_width':
-			{
-                'type': 'string',
-                'default': ''
-            },
 			'hero_title':
 			{
                 'type': 'string',
@@ -104,18 +99,6 @@
 					el(
 						InspectorControls,
 						'div',
-						el(
-							SelectControl,
-							{
-								label: script_hero_block_wp.full_width_label,
-								value: props.attributes.full_width,
-								options: convert_php_array_to_block_js(script_hero_block_wp.yes_no_for_select),
-								onChange: function(value)
-								{
-									props.setAttributes({full_width: value});
-								}
-							}
-						),
 						el(
 							TextControl,
 							{
