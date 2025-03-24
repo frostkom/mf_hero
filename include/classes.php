@@ -11,7 +11,7 @@ class mf_hero
 		$out = "";
 
 		/*$widget_id = "widget_hero_".md5(serialize($attributes));
-		
+
 		if(isset($attributes['style']) && is_array($attributes['style']))
 		{
 			$out_temp = "";

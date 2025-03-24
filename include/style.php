@@ -23,7 +23,6 @@ if(isset($obj_theme_core->options['hero_bg_color']) && $obj_theme_core->options[
 
 else
 {
-	//$setting_hero_bg_color = get_option('setting_hero_bg_color');
 	$setting_hero_bg_color = "rgba(255, 255, 255, 0)";
 }
 
@@ -43,23 +42,16 @@ echo "@media all
 			overflow: hidden;
 			padding-top: 0;
 			padding-bottom: 0;
-		}";
+		}
 
-			/*.widget.hero .has_text
-			{
-				padding-right: 2em;
-				padding-left: 2em;
-			}*/
-
-			echo ".widget.hero .align_center
+			.widget.hero .align_center
 			{
 				text-align: center;
 			}
 
 				.widget.hero .align_center img, .widget.hero .align_ontop img
 				{
-					/*margin: 0 auto;*/ /* Center... */
-					width: 100%; /* ...or fill */
+					width: 100%;
 				}
 
 			.widget.hero .image

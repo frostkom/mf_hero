@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description:
-Version: 2.5.21
+Version: 2.5.22
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
@@ -14,7 +14,7 @@ Depends: Meta Box, MF Base
 GitHub Plugin URI: frostkom/mf_hero
 */
 
-if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') && is_plugin_active("mf_base/index.php"))
+if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') && is_plugin_active("mf_base/index.php") && is_plugin_active("mf_theme_core/index.php"))
 {
 	include_once("include/classes.php");
 
@@ -52,9 +52,5 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	function activate_hero()
 	{
 		require_plugin("meta-box/meta-box.php", "Meta Box");
-
-		mf_uninstall_plugin(array(
-			'options' => array('setting_hero_bg_color', 'setting_hero_text_color'),
-		));
 	}
 }
