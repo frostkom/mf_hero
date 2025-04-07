@@ -608,8 +608,6 @@ class widget_hero extends WP_Widget
 
 	function widget($args, $instance)
 	{
-		do_log(__CLASS__."->".__FUNCTION__."(): Add a block instead", 'publish', false);
-
 		global $obj_hero;
 
 		if(!isset($obj_hero))
