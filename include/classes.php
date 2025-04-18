@@ -579,7 +579,10 @@ class mf_hero
 
 	function widgets_init()
 	{
-		register_widget('widget_hero');
+		if(wp_is_block_theme() == false)
+		{
+			register_widget('widget_hero');
+		}
 	}
 }
 

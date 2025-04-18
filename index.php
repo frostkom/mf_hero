@@ -3,7 +3,7 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description:
-Version: 2.5.24
+Version: 2.5.25
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
@@ -44,10 +44,7 @@ if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') &
 	add_filter('filter_options_params', array($obj_hero, 'filter_options_params'));
 	add_filter('filter_is_file_used', array($obj_hero, 'filter_is_file_used'));
 
-	if(wp_is_block_theme() == false)
-	{
-		add_action('widgets_init', array($obj_hero, 'widgets_init'));
-	}
+	add_action('widgets_init', array($obj_hero, 'widgets_init'));
 
 	function activate_hero()
 	{
