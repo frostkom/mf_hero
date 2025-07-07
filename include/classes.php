@@ -115,7 +115,7 @@ class mf_hero
 
 		wp_register_script('script_hero_block_wp', $plugin_include_url."block/script_wp.js", array('wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-block-editor'), $plugin_version, true);
 
-		$arr_data = array();
+		$arr_data = [];
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
 		wp_localize_script('script_hero_block_wp', 'script_hero_block_wp', array(
@@ -657,7 +657,7 @@ class widget_hero extends WP_Widget
 
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
 
-		$arr_data = array();
+		$arr_data = [];
 		get_post_children(array('add_choose_here' => true), $arr_data);
 
 		echo "<div class='mf_form'>"
