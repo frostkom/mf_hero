@@ -104,12 +104,8 @@ class mf_hero
 		);
 	}
 
-	function init()
+	function enqueue_block_editor_assets()
 	{
-		load_plugin_textdomain('lang_hero', false, str_replace("/include", "", dirname(plugin_basename(__FILE__)))."/lang/");
-
-		// Blocks
-		#######################
 		$plugin_include_url = plugin_dir_url(__FILE__);
 		$plugin_version = get_plugin_version(__FILE__);
 
@@ -132,6 +128,11 @@ class mf_hero
 			'hero_fade' => $this->get_fade_for_select(),
 			'hero_image_label' => __("Image", 'lang_hero'),
 		));
+	}
+
+	function init()
+	{
+		load_plugin_textdomain('lang_hero', false, str_replace("/include", "", dirname(plugin_basename(__FILE__)))."/lang/");
 
 		register_block_type('mf/hero', array(
 			'editor_script' => 'script_hero_block_wp',
@@ -139,7 +140,6 @@ class mf_hero
 			'render_callback' => array($this, 'block_render_callback'),
 			//'style' => 'style_base_block_wp',
 		));
-		#######################
 	}
 
 	function get_gcd($a, $b)
