@@ -10,6 +10,10 @@ class mf_hero
 	{
 		$out = "";
 
+		$plugin_include_url = plugin_dir_url(__FILE__);
+
+		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
+
 		/*$widget_id = "widget_hero_".md5(serialize($attributes));
 
 		if(isset($attributes['style']) && is_array($attributes['style']))
@@ -339,13 +343,6 @@ class mf_hero
 		return $meta_boxes;
 	}
 
-	function wp_head()
-	{
-		$plugin_include_url = plugin_dir_url(__FILE__);
-
-		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
-	}
-
 	function is_active_sidebar($is_active, $widget)
 	{
 		global $wp_query;
@@ -617,6 +614,12 @@ class widget_hero extends WP_Widget
 		{
 			$obj_hero = new mf_hero();
 		}
+
+		do_log(__CLASS__."->".__FUNCTION__."(): Add a block instead", 'publish', false);
+
+		$plugin_include_url = plugin_dir_url(__FILE__);
+
+		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
 
 		extract($args);
 		$instance = wp_parse_args((array)$instance, $this->arr_default);
