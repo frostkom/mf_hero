@@ -615,8 +615,6 @@ class widget_hero extends WP_Widget
 			$obj_hero = new mf_hero();
 		}
 
-		do_log(__CLASS__."->".__FUNCTION__."(): Add a block instead", 'publish', false);
-
 		$plugin_include_url = plugin_dir_url(__FILE__);
 
 		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
