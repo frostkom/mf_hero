@@ -3,15 +3,12 @@
 Plugin Name: MF Hero
 Plugin URI: https://github.com/frostkom/mf_hero
 Description:
-Version: 2.6.2
+Version: 2.6.3
 Licence: GPLv2 or later
 Author: Martin Fors
 Author URI: https://martinfors.se
 Text Domain: lang_hero
 Domain Path: /lang
-
-Depends: Meta Box, MF Base
-GitHub Plugin URI: frostkom/mf_hero
 */
 
 if(!function_exists('is_plugin_active') || function_exists('is_plugin_active') && is_plugin_active("mf_base/index.php") && is_plugin_active("mf_theme_core/index.php"))
