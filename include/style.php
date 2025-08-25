@@ -9,19 +9,22 @@ if(!defined('ABSPATH'))
 	require_once($folder."wp-load.php");
 }
 
-if(!isset($obj_theme_core))
+if(class_exists('mf_theme_core'))
 {
-	$obj_theme_core = new mf_theme_core();
+	if(!isset($obj_theme_core))
+	{
+		$obj_theme_core = new mf_theme_core();
+	}
+
+	$obj_theme_core->get_params();
+
+	if(isset($obj_theme_core->options['hero_bg_color']) && $obj_theme_core->options['hero_bg_color'] != '')
+	{
+		$setting_hero_bg_color = $obj_theme_core->options['hero_bg_color'];
+	}
 }
 
-$obj_theme_core->get_params();
-
-if(isset($obj_theme_core->options['hero_bg_color']) && $obj_theme_core->options['hero_bg_color'] != '')
-{
-	$setting_hero_bg_color = $obj_theme_core->options['hero_bg_color'];
-}
-
-else
+if(!isset($setting_hero_bg_color))
 {
 	$setting_hero_bg_color = "rgba(255, 255, 255, 0)";
 }
