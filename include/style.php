@@ -198,28 +198,32 @@ echo "@media all
 								margin: 0;
 								text-align: center;
 								width: 100%;
-							}
+							}";
 
-						.widget.hero h3
-						{"
-							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size', 'suffix' => ' !important'))
-							.$obj_theme_core->render_css(array('property' => 'margin-top', 'value' => 'hero_h3_margin_top', 'suffix' => ' !important'))
-						."}
-
-							.is_mobile .widget.hero h3
+						if(class_exists('mf_theme_core'))
+						{
+							echo ".widget.hero h3
 							{"
-								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size_mobile', 'suffix' => ' !important'))
+								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size', 'suffix' => ' !important'))
+								.$obj_theme_core->render_css(array('property' => 'margin-top', 'value' => 'hero_h3_margin_top', 'suffix' => ' !important'))
 							."}
 
-						.widget.hero .content p
-						{"
-							.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size', 'suffix' => ' !important'))
-							.$obj_theme_core->render_css(array('property' => 'padding', 'value' => 'hero_content_padding'))
-						."}
+								.is_mobile .widget.hero h3
+								{"
+									.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_h3_size_mobile', 'suffix' => ' !important'))
+								."}
 
-							.is_mobile .widget.hero .content p
+							.widget.hero .content p
 							{"
-								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size_mobile', 'suffix' => ' !important'))
-								."margin-top: 2vw !important;"
+								.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size', 'suffix' => ' !important'))
+								.$obj_theme_core->render_css(array('property' => 'padding', 'value' => 'hero_content_padding'))
 							."}
-}";
+
+								.is_mobile .widget.hero .content p
+								{"
+									.$obj_theme_core->render_css(array('property' => 'font-size', 'value' => 'hero_content_size_mobile', 'suffix' => ' !important'))
+									."margin-top: 2vw !important;"
+								."}";
+						}
+
+echo "}";
