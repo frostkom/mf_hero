@@ -270,6 +270,8 @@ class mf_hero
 	{
 		global $wpdb;
 
+		do_action('load_font_awesome');
+
 		$result = $wpdb->get_results($wpdb->prepare("SELECT ID FROM ".$wpdb->posts." INNER JOIN ".$wpdb->postmeta." ON ".$wpdb->posts.".ID = ".$wpdb->postmeta.".post_id WHERE post_type = %s AND post_status = %s AND (meta_key = %s OR meta_key = %s) AND meta_value != '' GROUP BY ID LIMIT 0, 3", 'page', 'publish', $this->meta_prefix.'title', $this->meta_prefix.'image'));
 
 		if($wpdb->num_rows > 0)
