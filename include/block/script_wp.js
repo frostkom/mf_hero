@@ -5,7 +5,7 @@
 		SelectControl = wp.components.SelectControl,
 		TextControl = wp.components.TextControl,
 		MediaUpload = wp.blockEditor.MediaUpload,
-	    Button = wp.components.Button,
+		Button = wp.components.Button,
 		MediaUploadCheck = wp.blockEditor.MediaUploadCheck,
 		InspectorControls = wp.blockEditor.InspectorControls;
 
@@ -24,44 +24,44 @@
 			},
 			'hero_title':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_content':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_link':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_external_link':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_content_align':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_image':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_image_id':
 			{
-                'type': 'string',
-                'default': ''
-            },
+				'type': 'string',
+				'default': ''
+			},
 			'hero_fade':
 			{
-                'type': 'string',
-                'default': ''
-            }
+				'type': 'string',
+				'default': ''
+			}
 		},
 		'supports':
 		{
