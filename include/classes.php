@@ -11,74 +11,7 @@ class mf_hero
 		$out = "";
 
 		$plugin_include_url = plugin_dir_url(__FILE__);
-
 		mf_enqueue_style('style_hero', $plugin_include_url."style.php");
-
-		/*$widget_id = "widget_hero_".md5(serialize($attributes));
-
-		if(isset($attributes['style']) && is_array($attributes['style']))
-		{
-			$out_temp = "";
-
-			foreach($attributes['style'] as $key => $arr_value)
-			{
-				switch($key)
-				{
-					case 'color':
-						foreach($arr_value as $key_sub => $arr_value_sub)
-						{
-							switch($key_sub)
-							{
-								case 'background':
-									foreach($arr_value as $key_sub => $value_sub)
-									{
-										$out_temp .= "#".$widget_id.".widget.hero
-										{
-											background: ".$value_sub.";
-										}
-
-										#".$widget_id.".widget.hero .image.image_fade:before
-										{
-											background: linear-gradient(to right, ".$value_sub." 0, transparent 100%);
-										}
-
-										#".$widget_id.".widget.hero .image.image_fade:after
-										{
-											background: linear-gradient(to left, ".$value_sub." 0, transparent 100%);
-										}
-
-										#".$widget_id.".widget.hero .image.image_fade div:after
-										{
-											background: linear-gradient(to top, ".$value_sub." 0, transparent 100%);
-										}
-
-										#".$widget_id.".widget.hero .image.image_solid div:after
-										{
-											background-color: ".$value_sub.";
-										}";
-									}
-								break;
-
-								default:
-									do_log(__FUNCTION__.": Unhandled style named ".$key." -> ".$key_sub);
-								break;
-							}
-						}
-					break;
-
-					default:
-						do_log(__FUNCTION__.": Unhandled style named ".$key);
-					break;
-				}
-			}
-
-			if($out_temp != '')
-			{
-				$out .= "<style>".$out_temp."</style>";
-			}
-		}
-
-		$attributes['before_widget'] = "<div id='".$widget_id."' class='widget hero".(isset($attributes['full_width']) && $attributes['full_width'] == 'yes' ? " full_width" : "").(isset($attributes['className']) && $attributes['className'] != '' ? " ".$attributes['className'] : "")."'>";*/
 
 		$attributes['before_widget'] = "<div".parse_block_attributes(array('class' => "widget hero", 'attributes' => $attributes)).">";
 		$attributes['before_title'] = "<h3>";
